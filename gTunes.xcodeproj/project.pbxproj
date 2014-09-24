@@ -1,0 +1,413 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EBB32EE619D30E1D00A7FD64 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB32EE519D30E1D00A7FD64 /* main.m */; };
+		EBB32EE919D30E1D00A7FD64 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB32EE819D30E1D00A7FD64 /* AppDelegate.m */; };
+		EBB32EEB19D30E1D00A7FD64 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBB32EEA19D30E1D00A7FD64 /* Images.xcassets */; };
+		EBB32EEE19D30E1D00A7FD64 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBB32EEC19D30E1D00A7FD64 /* MainMenu.xib */; };
+		EBB32EFA19D30E1D00A7FD64 /* gTunesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB32EF919D30E1D00A7FD64 /* gTunesTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EBB32EF419D30E1D00A7FD64 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EBB32ED819D30E1D00A7FD64 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EBB32EDF19D30E1D00A7FD64;
+			remoteInfo = gTunes;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EBB32EE019D30E1D00A7FD64 /* gTunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gTunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBB32EE419D30E1D00A7FD64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EBB32EE519D30E1D00A7FD64 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EBB32EE719D30E1D00A7FD64 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		EBB32EE819D30E1D00A7FD64 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		EBB32EEA19D30E1D00A7FD64 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		EBB32EED19D30E1D00A7FD64 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		EBB32EF319D30E1D00A7FD64 /* gTunesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = gTunesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBB32EF819D30E1D00A7FD64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EBB32EF919D30E1D00A7FD64 /* gTunesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = gTunesTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EBB32EDD19D30E1D00A7FD64 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBB32EF019D30E1D00A7FD64 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EBB32ED719D30E1D00A7FD64 = {
+			isa = PBXGroup;
+			children = (
+				EBB32EE219D30E1D00A7FD64 /* gTunes */,
+				EBB32EF619D30E1D00A7FD64 /* gTunesTests */,
+				EBB32EE119D30E1D00A7FD64 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EBB32EE119D30E1D00A7FD64 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EBB32EE019D30E1D00A7FD64 /* gTunes.app */,
+				EBB32EF319D30E1D00A7FD64 /* gTunesTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EBB32EE219D30E1D00A7FD64 /* gTunes */ = {
+			isa = PBXGroup;
+			children = (
+				EBB32EE719D30E1D00A7FD64 /* AppDelegate.h */,
+				EBB32EE819D30E1D00A7FD64 /* AppDelegate.m */,
+				EBB32EEA19D30E1D00A7FD64 /* Images.xcassets */,
+				EBB32EEC19D30E1D00A7FD64 /* MainMenu.xib */,
+				EBB32EE319D30E1D00A7FD64 /* Supporting Files */,
+			);
+			path = gTunes;
+			sourceTree = "<group>";
+		};
+		EBB32EE319D30E1D00A7FD64 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EBB32EE419D30E1D00A7FD64 /* Info.plist */,
+				EBB32EE519D30E1D00A7FD64 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EBB32EF619D30E1D00A7FD64 /* gTunesTests */ = {
+			isa = PBXGroup;
+			children = (
+				EBB32EF919D30E1D00A7FD64 /* gTunesTests.m */,
+				EBB32EF719D30E1D00A7FD64 /* Supporting Files */,
+			);
+			path = gTunesTests;
+			sourceTree = "<group>";
+		};
+		EBB32EF719D30E1D00A7FD64 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EBB32EF819D30E1D00A7FD64 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EBB32EDF19D30E1D00A7FD64 /* gTunes */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EBB32EFD19D30E1D00A7FD64 /* Build configuration list for PBXNativeTarget "gTunes" */;
+			buildPhases = (
+				EBB32EDC19D30E1D00A7FD64 /* Sources */,
+				EBB32EDD19D30E1D00A7FD64 /* Frameworks */,
+				EBB32EDE19D30E1D00A7FD64 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = gTunes;
+			productName = gTunes;
+			productReference = EBB32EE019D30E1D00A7FD64 /* gTunes.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EBB32EF219D30E1D00A7FD64 /* gTunesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EBB32F0019D30E1D00A7FD64 /* Build configuration list for PBXNativeTarget "gTunesTests" */;
+			buildPhases = (
+				EBB32EEF19D30E1D00A7FD64 /* Sources */,
+				EBB32EF019D30E1D00A7FD64 /* Frameworks */,
+				EBB32EF119D30E1D00A7FD64 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EBB32EF519D30E1D00A7FD64 /* PBXTargetDependency */,
+			);
+			name = gTunesTests;
+			productName = gTunesTests;
+			productReference = EBB32EF319D30E1D00A7FD64 /* gTunesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EBB32ED819D30E1D00A7FD64 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = koji;
+				TargetAttributes = {
+					EBB32EDF19D30E1D00A7FD64 = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+					EBB32EF219D30E1D00A7FD64 = {
+						CreatedOnToolsVersion = 6.0.1;
+						TestTargetID = EBB32EDF19D30E1D00A7FD64;
+					};
+				};
+			};
+			buildConfigurationList = EBB32EDB19D30E1D00A7FD64 /* Build configuration list for PBXProject "gTunes" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EBB32ED719D30E1D00A7FD64;
+			productRefGroup = EBB32EE119D30E1D00A7FD64 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EBB32EDF19D30E1D00A7FD64 /* gTunes */,
+				EBB32EF219D30E1D00A7FD64 /* gTunesTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EBB32EDE19D30E1D00A7FD64 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBB32EEB19D30E1D00A7FD64 /* Images.xcassets in Resources */,
+				EBB32EEE19D30E1D00A7FD64 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBB32EF119D30E1D00A7FD64 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EBB32EDC19D30E1D00A7FD64 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBB32EE919D30E1D00A7FD64 /* AppDelegate.m in Sources */,
+				EBB32EE619D30E1D00A7FD64 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBB32EEF19D30E1D00A7FD64 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBB32EFA19D30E1D00A7FD64 /* gTunesTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EBB32EF519D30E1D00A7FD64 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EBB32EDF19D30E1D00A7FD64 /* gTunes */;
+			targetProxy = EBB32EF419D30E1D00A7FD64 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EBB32EEC19D30E1D00A7FD64 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EBB32EED19D30E1D00A7FD64 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EBB32EFB19D30E1D00A7FD64 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		EBB32EFC19D30E1D00A7FD64 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		EBB32EFE19D30E1D00A7FD64 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = gTunes/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		EBB32EFF19D30E1D00A7FD64 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = gTunes/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		EBB32F0119D30E1D00A7FD64 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = gTunesTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/gTunes.app/Contents/MacOS/gTunes";
+			};
+			name = Debug;
+		};
+		EBB32F0219D30E1D00A7FD64 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = gTunesTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/gTunes.app/Contents/MacOS/gTunes";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EBB32EDB19D30E1D00A7FD64 /* Build configuration list for PBXProject "gTunes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EBB32EFB19D30E1D00A7FD64 /* Debug */,
+				EBB32EFC19D30E1D00A7FD64 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EBB32EFD19D30E1D00A7FD64 /* Build configuration list for PBXNativeTarget "gTunes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EBB32EFE19D30E1D00A7FD64 /* Debug */,
+				EBB32EFF19D30E1D00A7FD64 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		EBB32F0019D30E1D00A7FD64 /* Build configuration list for PBXNativeTarget "gTunesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EBB32F0119D30E1D00A7FD64 /* Debug */,
+				EBB32F0219D30E1D00A7FD64 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EBB32ED819D30E1D00A7FD64 /* Project object */;
+}
