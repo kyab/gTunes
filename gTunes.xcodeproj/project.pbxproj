@@ -12,6 +12,7 @@
 		EBB32EEB19D30E1D00A7FD64 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBB32EEA19D30E1D00A7FD64 /* Images.xcassets */; };
 		EBB32EEE19D30E1D00A7FD64 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBB32EEC19D30E1D00A7FD64 /* MainMenu.xib */; };
 		EBB32EFA19D30E1D00A7FD64 /* gTunesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB32EF919D30E1D00A7FD64 /* gTunesTests.m */; };
+		EBB32F0519D30FFF00A7FD64 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB32F0419D30FFF00A7FD64 /* AppController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,9 @@
 		EBB32EF319D30E1D00A7FD64 /* gTunesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = gTunesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBB32EF819D30E1D00A7FD64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EBB32EF919D30E1D00A7FD64 /* gTunesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = gTunesTests.m; sourceTree = "<group>"; };
+		EBB32F0319D30FFF00A7FD64 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
+		EBB32F0419D30FFF00A7FD64 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
+		EBB32F0619D3161A00A7FD64 /* iTunes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,8 +80,11 @@
 		EBB32EE219D30E1D00A7FD64 /* gTunes */ = {
 			isa = PBXGroup;
 			children = (
+				EBB32F0619D3161A00A7FD64 /* iTunes.h */,
 				EBB32EE719D30E1D00A7FD64 /* AppDelegate.h */,
 				EBB32EE819D30E1D00A7FD64 /* AppDelegate.m */,
+				EBB32F0319D30FFF00A7FD64 /* AppController.h */,
+				EBB32F0419D30FFF00A7FD64 /* AppController.m */,
 				EBB32EEA19D30E1D00A7FD64 /* Images.xcassets */,
 				EBB32EEC19D30E1D00A7FD64 /* MainMenu.xib */,
 				EBB32EE319D30E1D00A7FD64 /* Supporting Files */,
@@ -211,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBB32EE919D30E1D00A7FD64 /* AppDelegate.m in Sources */,
+				EBB32F0519D30FFF00A7FD64 /* AppController.m in Sources */,
 				EBB32EE619D30E1D00A7FD64 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
