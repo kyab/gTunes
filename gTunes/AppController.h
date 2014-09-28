@@ -20,6 +20,11 @@
     __weak IBOutlet NSSlider *sliderPosition;
 	__weak IBOutlet NSTextField *lblPosition;
 	NSTimer *timer;
+	__weak IBOutlet NSButton *chkLoop;
+	__weak IBOutlet NSTextField *lblLoopStartTime;
+	__weak IBOutlet NSTextField *lblLoopEndTime;
+	double loopStartTime;
+	double loopEndTime;
 }
 
 - (IBAction)loadiTunes:(id)sender;
@@ -29,4 +34,11 @@
 -(void)updateStatus;
 -(void)awakeFromNib;
 -(void)ontimer:(NSTimer *)t;
+
+- (IBAction)setLoopStartAsNow:(id)sender;
+- (IBAction)setLoopEndAsNow:(id)sender;
+
+- (IBAction)goToLoopStart:(id)sender;
+- (IBAction)goToLoopEnd:(id)sender;
+
 @end

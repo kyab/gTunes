@@ -21,6 +21,8 @@
     [self loadiTunes:nil];
     [self updateStatus];
 	
+	loopStartTime = -1.0f;
+	loopEndTime = -1.0f;
 	
 	timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(ontimer:) userInfo:nil repeats:YES];
 	
@@ -53,8 +55,12 @@
 -(void)updateStatus
 {
     iTunesTrack *currentTrack = [iTunesApp currentTrack];
-    [lblArtist setStringValue:[currentTrack artist]];
-    [lblTitle setStringValue:[currentTrack name]];
+	if (currentTrack.artist){
+		[lblArtist setStringValue:[currentTrack artist]];
+	}
+	if (currentTrack.name){
+		[lblTitle setStringValue:[currentTrack name]];
+	}
     NSLog(@"%@", [currentTrack properties]);
     
     //somehow we should call "get"
@@ -64,9 +70,9 @@
     
     if
 		([iTunesApp playerState] == iTunesEPlSPlaying){
-        [btnPlayPause setTitle:@"pause"];
+        [btnPlayPause setTitle:@"Pause"];
     }else{
-        [btnPlayPause setTitle:@"play"];
+        [btnPlayPause setTitle:@"Play"];
     }
 }
 
@@ -85,6 +91,16 @@
 	if (![[sliderPosition cell] mouseDownFlags]){
 		NSLog(@"mouse upped");
 		[sliderPosition setDoubleValue:cursec/totalsec];
+		
+		//Loop
+		if (chkLoop.state == NSOnState){
+			if (loopStartTime >= 1.0f && loopEndTime >= 1.0f){
+				if (cursec > loopEndTime){
+					NSLog(@"Loop back!!");
+					[iTunesApp setPlayerPosition:loopStartTime];
+				}
+			}
+		}
 	}else{
 		NSLog(@"timer on slider moving");
 	}
@@ -92,6 +108,7 @@
 	//TODO cancel sliderChanged fired on mouse up of position slider
 	
 }
+
 
 -(IBAction)sliderChanged:(id)sender
 {
@@ -111,5 +128,34 @@
     NSLog(@"%@", notification);
 	[self updateStatus];
 }
+
+-(NSString *)formatSec:(double)sec
+{
+	NSString *ret = [NSString stringWithFormat:@"%.2d:%.2d:%.3d",
+						(int)sec/60,
+						((int)sec)%60,
+						(int)((sec-(int)(sec))*1000)];
+	return ret;
+}
+
+-(IBAction)setLoopStartAsNow:(id)sender{
+	loopStartTime = iTunesApp.playerPosition;
+	[lblLoopStartTime setStringValue:[self formatSec:loopStartTime]];
+	
+}
+
+-(IBAction)setLoopEndAsNow:(id)sender {
+	loopEndTime = iTunesApp.playerPosition;
+	[lblLoopEndTime setStringValue:[self formatSec:loopEndTime]];
+}
+
+-(IBAction)goToLoopStart:(id)sender{
+	[iTunesApp setPlayerPosition:loopStartTime];
+}
+
+-(IBAction)goToLoopEnd:(id)sender{
+	[iTunesApp setPlayerPosition:loopEndTime];
+}
+
 
 @end
