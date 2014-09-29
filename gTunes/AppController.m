@@ -19,7 +19,7 @@
 -(void)awakeFromNib
 {
     [self loadiTunes:nil];
-    [self updateStatus];
+    //[self updateStatus]; postpone
 	
 	loopStartTime = -1.0f;
 	loopEndTime = -1.0f;
@@ -54,34 +54,43 @@
 
 -(void)updateStatus
 {
+	if([iTunesApp playerState] == iTunesEPlSPlaying){
+		[btnPlayPause setTitle:@"Pause"];
+	}else{
+		[btnPlayPause setTitle:@"Play"];
+	}
+	
     iTunesTrack *currentTrack = [iTunesApp currentTrack];
+	if (!currentTrack){
+		return;
+	}
 	if (currentTrack.artist){
 		[lblArtist setStringValue:[currentTrack artist]];
 	}
 	if (currentTrack.name){
 		[lblTitle setStringValue:[currentTrack name]];
 	}
-    NSLog(@"%@", [currentTrack properties]);
     
     //somehow we should call "get"
     //http://www.cocoabuilder.com/archive/cocoa/200195-problems-with-scriptingbridge-and-itunes.html
     iTunesFileTrack *fileTrack = (iTunesFileTrack *)[currentTrack get];
     NSLog(@"%@", fileTrack.location);
     
-    if
-		([iTunesApp playerState] == iTunesEPlSPlaying){
-        [btnPlayPause setTitle:@"Pause"];
-    }else{
-        [btnPlayPause setTitle:@"Play"];
-    }
+
 }
 
 -(void)ontimer:(NSTimer *)t
 {
+	static bool firstcall = true;
+	if (firstcall){
+		[self updateStatus];
+		firstcall = false;
+	}
+	
 	iTunesTrack *currentTrack = [iTunesApp currentTrack];
 	double cursec = [iTunesApp playerPosition];	//not updated in msec...
 	double totalsec = [currentTrack duration];
-	NSLog(@"cursec = %f", cursec);
+	//NSLog(@"cursec = %f", cursec);
 	
 	NSString *positionText = [NSString stringWithFormat:@"%.2d:%.2d/%.2d:%.2d",
 				(int)cursec/60, ((int)cursec) % 60,
@@ -89,7 +98,7 @@
 	[lblPosition setStringValue:positionText];
 	
 	if (![[sliderPosition cell] mouseDownFlags]){
-		NSLog(@"mouse upped");
+		//NSLog(@"mouse upped");
 		[sliderPosition setDoubleValue:cursec/totalsec];
 		
 		//Loop
@@ -102,7 +111,7 @@
 			}
 		}
 	}else{
-		NSLog(@"timer on slider moving");
+		//NSLog(@"timer on slider moving");
 	}
 	
 	//TODO cancel sliderChanged fired on mouse up of position slider
