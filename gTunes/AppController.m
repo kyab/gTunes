@@ -87,6 +87,7 @@
 		firstcall = false;
 		
 		//without this, gTunes goes background if launched from iTunes Script menu.
+		//should be in applicationDidFinishLaunching?
 		[NSApp activateIgnoringOtherApps:YES];
 		[window makeKeyAndOrderFront:nil];
 		
