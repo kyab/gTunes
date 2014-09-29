@@ -25,6 +25,7 @@
 	__weak IBOutlet NSTextField *lblLoopEndTime;
 	double loopStartTime;
 	double loopEndTime;
+	IBOutlet NSWindow *window;
 }
 
 - (IBAction)loadiTunes:(id)sender;

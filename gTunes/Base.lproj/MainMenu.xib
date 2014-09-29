@@ -834,7 +834,7 @@ IA
                     <constraint firstAttribute="centerX" secondItem="lO3-ku-Oyx" secondAttribute="centerX" id="pnk-ui-hVd"/>
                 </constraints>
             </view>
-            <point key="canvasLocation" x="79" y="179.5"/>
+            <point key="canvasLocation" x="-14" y="195.5"/>
         </window>
         <customObject id="LRo-JF-awA" customClass="AppController">
             <connections>
@@ -846,6 +846,7 @@ IA
                 <outlet property="lblPosition" destination="5uX-Kg-woW" id="LiY-AE-yRE"/>
                 <outlet property="lblTitle" destination="TVw-x1-qhG" id="bBI-KW-RrV"/>
                 <outlet property="sliderPosition" destination="De2-Vd-9iK" id="MPj-x5-4r9"/>
+                <outlet property="window" destination="QvC-M9-y7g" id="Hji-Gq-4mr"/>
             </connections>
         </customObject>
     </objects>

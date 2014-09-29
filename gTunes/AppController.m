@@ -85,7 +85,13 @@
 	if (firstcall){
 		[self updateStatus];
 		firstcall = false;
+		
+		//without this, gTunes goes background if launched from iTunes Script menu.
+		[NSApp activateIgnoringOtherApps:YES];
+		[window makeKeyAndOrderFront:nil];
+		
 	}
+
 	
 	iTunesTrack *currentTrack = [iTunesApp currentTrack];
 	double cursec = [iTunesApp playerPosition];	//not updated in msec...
