@@ -110,7 +110,7 @@
 		
 		//Loop
 		if (chkLoop.state == NSOnState){
-			if (loopStartTime >= 1.0f && loopEndTime >= 1.0f){
+			if (loopStartTime >= 0.0f && loopEndTime >= 1.0f){
 				if (cursec > loopEndTime){
 					NSLog(@"Loop back!!");
 					[iTunesApp setPlayerPosition:loopStartTime];

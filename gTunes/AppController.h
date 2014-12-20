@@ -39,6 +39,12 @@
 - (IBAction)setLoopStartAsNow:(id)sender;
 - (IBAction)setLoopEndAsNow:(id)sender;
 
+- (IBAction)forwardLoopStart:(id)sender;
+- (IBAction)forwardLoopStartSlightly:(id)sender;
+- (IBAction)backLoopStart:(id)sender;
+- (IBAction)backLoopStartSlightly:(id)sender;
+
+
 - (IBAction)goToLoopStart:(id)sender;
 - (IBAction)goToLoopEnd:(id)sender;
 

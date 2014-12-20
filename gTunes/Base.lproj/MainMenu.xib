@@ -346,6 +346,25 @@
                         </items>
                     </menu>
                 </menuItem>
+                <menuItem title="Control" id="DCh-Zo-Quu">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Control" id="fB3-7W-teW">
+                        <items>
+                            <menuItem title="Forward Loop Start" id="x7O-CE-5E2">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="forwardLoopStart:" target="LRo-JF-awA" id="DQj-yp-poI"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Item" id="xk7-Ji-Gxx">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Item" id="dku-0E-zV0">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
                 <menuItem title="Format" id="jxT-CU-nIS">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Format" id="GEO-Iw-cKr">
@@ -731,6 +750,43 @@
                                     </buttonCell>
                                     <connections>
                                         <action selector="goToLoopStart:" target="LRo-JF-awA" id="AmN-Ge-slE"/>
+                                    </connections>
+                                </button>
+                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XYP-uu-Nn0">
+                                    <rect key="frame" x="33" y="24" width="41" height="32"/>
+                                    <buttonCell key="cell" type="push" title="&lt;" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BkZ-3o-Slo">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="smallSystem"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="backLoopStartSlightly:" target="LRo-JF-awA" id="dAD-Gs-WON"/>
+                                    </connections>
+                                </button>
+                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q3D-3P-DMh">
+                                    <rect key="frame" x="65" y="24" width="41" height="32"/>
+                                    <buttonCell key="cell" type="push" title=">" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8Dd-Yi-hcR">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="smallSystem"/>
+                                    </buttonCell>
+                                </button>
+                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LHv-8e-XPe">
+                                    <rect key="frame" x="95" y="24" width="47" height="32"/>
+                                    <buttonCell key="cell" type="push" title=">>" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HWc-SV-8Oy">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="smallSystem"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="forwardLoopStartSlightly:" target="LRo-JF-awA" id="pha-hz-fWI"/>
+                                    </connections>
+                                </button>
+                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pHr-LQ-Vtg">
+                                    <rect key="frame" x="0.0" y="24" width="44" height="32"/>
+                                    <buttonCell key="cell" type="push" title="&lt;&lt;" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kj2-yI-qKL">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="smallSystem"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="backLoopStart:" target="LRo-JF-awA" id="cEu-CI-tpm"/>
                                     </connections>
                                 </button>
                             </subviews>
