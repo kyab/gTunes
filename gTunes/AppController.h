@@ -23,6 +23,7 @@
 	__weak IBOutlet NSButton *chkLoop;
 	__weak IBOutlet NSTextField *lblLoopStartTime;
 	__weak IBOutlet NSTextField *lblLoopEndTime;
+    __weak IBOutlet NSButton *btnGotoStart;
 	double loopStartTime;
 	double loopEndTime;
 	IBOutlet NSWindow *window;

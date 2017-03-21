@@ -93,7 +93,6 @@
 		
 	}
 
-	
 	iTunesTrack *currentTrack = [iTunesApp currentTrack];
 	double cursec = [iTunesApp playerPosition];	//not updated in msec...
 	double totalsec = [currentTrack duration];
@@ -159,14 +158,47 @@
 	[lblLoopStartTime setStringValue:[self formatSec:loopStartTime]];
 	
 }
+- (IBAction)backLoopStart:(id)sender {
+    if (loopStartTime - 1.0 > 0.0){
+        loopStartTime -= 1.0;
+    }else{
+        loopStartTime = 0.0;
+    }
+    [lblLoopStartTime setStringValue:[self formatSec:loopStartTime]];
+    
+}
+- (IBAction)backLoopStartLittle:(id)sender {
+    if (loopStartTime - 0.2 > 0.0){
+        loopStartTime -= 0.2;
+    }else{
+        loopStartTime = 0.0;
+    }
+    [lblLoopStartTime setStringValue:[self formatSec:loopStartTime]];
+}
+- (IBAction)forwardLoopStart:(id)sender {
+    loopStartTime += 1.0;
+    [lblLoopStartTime setStringValue:[self formatSec:loopStartTime]];
+}
+
+- (IBAction)forwardLoopStartLittle:(id)sender {
+    loopStartTime += 0.2;
+    [lblLoopStartTime setStringValue:[self formatSec:loopStartTime]];
+}
 
 -(IBAction)setLoopEndAsNow:(id)sender {
 	loopEndTime = iTunesApp.playerPosition;
 	[lblLoopEndTime setStringValue:[self formatSec:loopEndTime]];
 }
+- (IBAction)Bpressed:(id)sender {
+    [btnGotoStart performClick:sender];
+}
 
 -(IBAction)goToLoopStart:(id)sender{
 	[iTunesApp setPlayerPosition:loopStartTime];
+    if([iTunesApp playerState] != iTunesEPlSPlaying){
+        [iTunesApp playpause];
+    }
+    
 }
 
 -(IBAction)goToLoopEnd:(id)sender{
