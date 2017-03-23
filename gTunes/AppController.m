@@ -117,7 +117,6 @@
 			}
 		}
 	}else{
-		//NSLog(@"timer on slider moving");
 	}
 	
 	//TODO cancel sliderChanged fired on mouse up of position slider
@@ -189,6 +188,34 @@
 	loopEndTime = iTunesApp.playerPosition;
 	[lblLoopEndTime setStringValue:[self formatSec:loopEndTime]];
 }
+
+- (IBAction)backLoopEnd:(id)sender {
+    if (loopEndTime - 1.0 > 0.0){
+        loopEndTime -= 1.0;
+    }else{
+        loopEndTime = 0.0;
+    }
+    [lblLoopEndTime setStringValue:[self formatSec:loopEndTime]];
+    
+}
+- (IBAction)backLoopEndLittle:(id)sender {
+    if (loopEndTime - 0.2 > 0.0){
+        loopEndTime -= 0.2;
+    }else{
+        loopEndTime = 0.0;
+    }
+    [lblLoopEndTime setStringValue:[self formatSec:loopEndTime]];
+}
+- (IBAction)forwardLoopEnd:(id)sender {
+    loopEndTime += 1.0;
+    [lblLoopEndTime setStringValue:[self formatSec:loopEndTime]];
+}
+
+- (IBAction)forwardLoopEndStartLittle:(id)sender {
+    loopEndTime += 0.2;
+    [lblLoopEndTime setStringValue:[self formatSec:loopEndTime]];
+}
+
 - (IBAction)Bpressed:(id)sender {
     [btnGotoStart performClick:sender];
 }
