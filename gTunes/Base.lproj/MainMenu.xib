@@ -731,8 +731,8 @@
                             <rect key="frame" x="1" y="1" width="141" height="98"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textField verticalHuggingPriority="750" id="hgX-mX-ZEt">
-                                    <rect key="frame" x="18" y="66" width="96" height="22"/>
+                                <textField verticalHuggingPriority="750" misplaced="YES" id="hgX-mX-ZEt">
+                                    <rect key="frame" x="22" y="66" width="96" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" title="00:00:00" placeholderString="00:00:00" drawsBackground="YES" id="3c2-No-BdX">
                                         <font key="font" metaFont="system"/>
@@ -752,10 +752,10 @@
                                         <action selector="setLoopStartAsNow:" target="LRo-JF-awA" id="bdQ-6c-w9M"/>
                                     </connections>
                                 </button>
-                                <button verticalHuggingPriority="750" id="aYH-Yw-9eZ">
-                                    <rect key="frame" x="72" y="0.0" width="69" height="32"/>
+                                <button verticalHuggingPriority="750" misplaced="YES" id="aYH-Yw-9eZ">
+                                    <rect key="frame" x="72" y="0.0" width="70" height="32"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <buttonCell key="cell" type="push" title="Go" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Zbl-rE-Saf">
+                                    <buttonCell key="cell" type="push" title="[G]o" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Zbl-rE-Saf">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                         <string key="keyEquivalent">g</string>
@@ -826,8 +826,8 @@
                             <rect key="frame" x="1" y="1" width="139" height="98"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textField verticalHuggingPriority="750" id="SNi-b5-kb9">
-                                    <rect key="frame" x="18" y="66" width="96" height="22"/>
+                                <textField verticalHuggingPriority="750" misplaced="YES" id="SNi-b5-kb9">
+                                    <rect key="frame" x="21" y="66" width="96" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" title="10:00:00" placeholderString="00:00:00" drawsBackground="YES" id="teH-pg-yLi">
                                         <font key="font" metaFont="system"/>
@@ -841,13 +841,14 @@
                                     <buttonCell key="cell" type="push" title="Set Now" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="phN-1A-CF1">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
+                                        <string key="keyEquivalent">e</string>
                                     </buttonCell>
                                     <connections>
                                         <action selector="setLoopEndAsNow:" target="LRo-JF-awA" id="Hm7-Kj-1x8"/>
                                     </connections>
                                 </button>
-                                <button verticalHuggingPriority="750" id="ez0-z1-mDb">
-                                    <rect key="frame" x="70" y="0.0" width="65" height="32"/>
+                                <button verticalHuggingPriority="750" misplaced="YES" id="ez0-z1-mDb">
+                                    <rect key="frame" x="70" y="0.0" width="70" height="32"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Go" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MXd-L7-RPF">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -855,6 +856,50 @@
                                     </buttonCell>
                                     <connections>
                                         <action selector="goToLoopEnd:" target="LRo-JF-awA" id="Xnm-23-Jpd"/>
+                                    </connections>
+                                </button>
+                                <button verticalHuggingPriority="750" misplaced="YES" id="hK7-5f-FUy">
+                                    <rect key="frame" x="0.0" y="23" width="44" height="32"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="push" title="&lt;&lt;" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NBq-Yw-uSA">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="smallSystem"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="backLoopEnd:" target="LRo-JF-awA" id="Wos-aK-hbY"/>
+                                    </connections>
+                                </button>
+                                <button verticalHuggingPriority="750" misplaced="YES" id="7kG-Im-3b4">
+                                    <rect key="frame" x="33" y="23" width="41" height="32"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="push" title="&lt;" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tMt-sb-xXU">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="smallSystem"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="backLoopEndLittle:" target="LRo-JF-awA" id="E5y-K5-tIJ"/>
+                                    </connections>
+                                </button>
+                                <button verticalHuggingPriority="750" misplaced="YES" id="wZf-27-quh">
+                                    <rect key="frame" x="64" y="23" width="41" height="32"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="push" title="&gt;" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Gz4-Fk-qNA">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="smallSystem"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="forwardLoopEndStartLittle:" target="LRo-JF-awA" id="I2m-Xx-1EA"/>
+                                    </connections>
+                                </button>
+                                <button verticalHuggingPriority="750" misplaced="YES" id="s38-4Z-jcX">
+                                    <rect key="frame" x="93" y="23" width="47" height="32"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="push" title="&gt;&gt;" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hRP-ad-MwV">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="smallSystem"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="forwardLoopEnd:" target="LRo-JF-awA" id="o1M-sW-Nec"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -906,7 +951,7 @@ IA
                     </button>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="-14" y="195.5"/>
+            <point key="canvasLocation" x="-14.5" y="195.5"/>
         </window>
         <customObject id="LRo-JF-awA" customClass="AppController">
             <connections>
