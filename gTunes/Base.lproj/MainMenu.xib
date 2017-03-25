@@ -740,10 +740,10 @@
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <button verticalHuggingPriority="750" id="zgc-ci-nH5">
-                                    <rect key="frame" x="0.0" y="0.0" width="80" height="32"/>
+                                <button verticalHuggingPriority="750" misplaced="YES" id="zgc-ci-nH5">
+                                    <rect key="frame" x="0.0" y="0.0" width="91" height="32"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <buttonCell key="cell" type="push" title="Set Now" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FZM-JR-2p9">
+                                    <buttonCell key="cell" type="push" title="[S]et Now" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FZM-JR-2p9">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                         <string key="keyEquivalent">s</string>
@@ -753,7 +753,7 @@
                                     </connections>
                                 </button>
                                 <button verticalHuggingPriority="750" misplaced="YES" id="aYH-Yw-9eZ">
-                                    <rect key="frame" x="72" y="0.0" width="70" height="32"/>
+                                    <rect key="frame" x="80" y="0.0" width="62" height="32"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="[G]o" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Zbl-rE-Saf">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -814,9 +814,10 @@
                     <button id="ip3-MC-rSP">
                         <rect key="frame" x="181" y="179" width="118" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Loop Enabled" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="AVK-86-uJz">
+                        <buttonCell key="cell" type="check" title="[L]oop Enabled" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="AVK-86-uJz">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
+                            <font key="font" size="13" name=".HiraKakuInterface-W3"/>
+                            <string key="keyEquivalent">l</string>
                         </buttonCell>
                     </button>
                     <box autoresizesSubviews="NO" borderType="line" title="Loop End" id="D34-Aj-UDe">
@@ -835,10 +836,10 @@
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <button verticalHuggingPriority="750" id="jbO-X7-A5L">
-                                    <rect key="frame" x="0.0" y="0.0" width="79" height="32"/>
+                                <button verticalHuggingPriority="750" misplaced="YES" id="jbO-X7-A5L">
+                                    <rect key="frame" x="0.0" y="0.0" width="99" height="32"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <buttonCell key="cell" type="push" title="Set Now" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="phN-1A-CF1">
+                                    <buttonCell key="cell" type="push" title="Set Now[E]" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="phN-1A-CF1">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                         <string key="keyEquivalent">e</string>
@@ -848,7 +849,7 @@
                                     </connections>
                                 </button>
                                 <button verticalHuggingPriority="750" misplaced="YES" id="ez0-z1-mDb">
-                                    <rect key="frame" x="70" y="0.0" width="70" height="32"/>
+                                    <rect key="frame" x="93" y="0.0" width="47" height="32"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Go" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MXd-L7-RPF">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
