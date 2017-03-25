@@ -151,6 +151,33 @@
 						(int)((sec-(int)(sec))*1000)];
 	return ret;
 }
+- (IBAction)fastForward:(id)sender {
+    double currentPosition = iTunesApp.playerPosition;
+    [iTunesApp setPlayerPosition:currentPosition + 3.0];
+    
+    iTunesTrack *currentTrack = [iTunesApp currentTrack];
+    double cursec = [iTunesApp playerPosition];
+    double totalsec = [currentTrack duration];
+    
+    [sliderPosition setDoubleValue:cursec/totalsec];
+    
+}
+
+- (IBAction)rewind:(id)sender {
+    double currentPosition = iTunesApp.playerPosition;
+    if (currentPosition - 3.0 > 0.0){
+        [iTunesApp setPlayerPosition:currentPosition-3.0];
+    }else{
+        [iTunesApp setPlayerPosition:0.0];
+    }
+
+    iTunesTrack *currentTrack = [iTunesApp currentTrack];
+    double cursec = [iTunesApp playerPosition];
+    double totalsec = [currentTrack duration];
+    
+    [sliderPosition setDoubleValue:cursec/totalsec];
+    
+}
 
 -(IBAction)setLoopStartAsNow:(id)sender{
 	loopStartTime = iTunesApp.playerPosition;

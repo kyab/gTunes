@@ -697,8 +697,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="469" height="231"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="lO3-ku-Oyx">
-                        <rect key="frame" x="105" y="45" width="259" height="17"/>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="lO3-ku-Oyx">
+                        <rect key="frame" x="117" y="45" width="259" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" placeholderString="Artist" id="ocq-tr-hIO">
                             <font key="font" metaFont="system"/>
@@ -906,8 +906,8 @@
                             </subviews>
                         </view>
                     </box>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="TVw-x1-qhG">
-                        <rect key="frame" x="97" y="20" width="274" height="17"/>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="TVw-x1-qhG">
+                        <rect key="frame" x="117" y="20" width="274" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" placeholderString="Song Name" id="y44-fV-cTb">
                             <font key="font" metaFont="system"/>
@@ -948,6 +948,30 @@ IA
                         </buttonCell>
                         <connections>
                             <action selector="Bpressed:" target="LRo-JF-awA" id="VyV-Mb-7FD"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" misplaced="YES" id="RTA-Ga-luI">
+                        <rect key="frame" x="0.0" y="13" width="55" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="&lt;-" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Dci-y3-bb7">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent"></string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="rewind:" target="LRo-JF-awA" id="IWA-zw-iNQ"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" misplaced="YES" id="nyq-YD-94f">
+                        <rect key="frame" x="52" y="13" width="55" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="-&gt;" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cmT-xW-Ghs">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent"></string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="fastForward:" target="LRo-JF-awA" id="ytc-Qh-hkb"/>
                         </connections>
                     </button>
                 </subviews>
