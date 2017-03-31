@@ -974,6 +974,11 @@ IA
                             <action selector="fastForward:" target="LRo-JF-awA" id="ytc-Qh-hkb"/>
                         </connections>
                     </button>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="X2E-cV-hJY">
+                        <rect key="frame" x="413" y="7" width="36" height="40"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="6my-rw-IQL"/>
+                    </imageView>
                 </subviews>
             </view>
             <point key="canvasLocation" x="-14.5" y="195.5"/>
@@ -983,6 +988,7 @@ IA
                 <outlet property="btnGotoStart" destination="aYH-Yw-9eZ" id="WBq-Wn-pRy"/>
                 <outlet property="btnPlayPause" destination="xsn-89-EZM" id="Lbf-k3-Qwa"/>
                 <outlet property="chkLoop" destination="ip3-MC-rSP" id="nlY-1o-6F7"/>
+                <outlet property="imageArtwork" destination="X2E-cV-hJY" id="mrc-p2-nWj"/>
                 <outlet property="lblArtist" destination="lO3-ku-Oyx" id="CdH-6T-BJ5"/>
                 <outlet property="lblLoopEndTime" destination="SNi-b5-kb9" id="Tks-El-W3O"/>
                 <outlet property="lblLoopStartTime" destination="hgX-mX-ZEt" id="B0D-PU-rya"/>

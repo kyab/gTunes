@@ -24,6 +24,7 @@
 	__weak IBOutlet NSTextField *lblLoopStartTime;
 	__weak IBOutlet NSTextField *lblLoopEndTime;
     __weak IBOutlet NSButton *btnGotoStart;
+    __weak IBOutlet NSImageView *imageArtwork;
 	double loopStartTime;
 	double loopEndTime;
 	IBOutlet NSWindow *window;
@@ -41,9 +42,9 @@
 - (IBAction)setLoopEndAsNow:(id)sender;
 
 - (IBAction)forwardLoopStart:(id)sender;
-- (IBAction)forwardLoopStartSlightly:(id)sender;
+- (IBAction)forwardLoopStartLittle:(id)sender;
 - (IBAction)backLoopStart:(id)sender;
-- (IBAction)backLoopStartSlightly:(id)sender;
+- (IBAction)backLoopStartLittle:(id)sender;
 
 
 - (IBAction)goToLoopStart:(id)sender;

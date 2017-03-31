@@ -70,13 +70,24 @@
 	if (currentTrack.name){
 		[lblTitle setStringValue:[currentTrack name]];
 	}
+
     
     //somehow we should call "get"
     //http://www.cocoabuilder.com/archive/cocoa/200195-problems-with-scriptingbridge-and-itunes.html
     iTunesFileTrack *fileTrack = (iTunesFileTrack *)[currentTrack get];
-    NSLog(@"%@", fileTrack.location);
+    NSLog(@"fileTrack(%@),%@", fileTrack, fileTrack.location);
     
-
+    //Show artwork (maybe not required)
+    SBElementArray *artworks = [currentTrack artworks];
+    if (artworks && artworks.count != 0){
+        NSLog(@"Have %lu art works", (unsigned long)artworks.count);
+        iTunesArtwork *artwork = [artworks objectAtIndex:0];
+        NSLog(@"foo=%@", artwork);
+        //[imageArtwork setImage:artwork.data];
+    }else{
+        //[imageArtwork setImage:nil];
+    }
+    
 }
 
 -(void)ontimer:(NSTimer *)t
