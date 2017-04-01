@@ -70,6 +70,8 @@
 	if (currentTrack.name){
 		[lblTitle setStringValue:[currentTrack name]];
 	}
+    
+    NSLog(@"properties = %@", [currentTrack properties]);
 
     
     //somehow we should call "get"
