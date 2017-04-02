@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB4094ED1E900AF0009E6B80 /* LoopbackSide.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4094EC1E900AF0009E6B80 /* LoopbackSide.m */; };
 		EBB32EE619D30E1D00A7FD64 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB32EE519D30E1D00A7FD64 /* main.m */; };
 		EBB32EE919D30E1D00A7FD64 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB32EE819D30E1D00A7FD64 /* AppDelegate.m */; };
 		EBB32EEB19D30E1D00A7FD64 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBB32EEA19D30E1D00A7FD64 /* Images.xcassets */; };
 		EBB32EEE19D30E1D00A7FD64 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBB32EEC19D30E1D00A7FD64 /* MainMenu.xib */; };
 		EBB32EFA19D30E1D00A7FD64 /* gTunesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB32EF919D30E1D00A7FD64 /* gTunesTests.m */; };
 		EBB32F0519D30FFF00A7FD64 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB32F0419D30FFF00A7FD64 /* AppController.m */; };
+		EBE312321E9168930000FD35 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBE312311E9168930000FD35 /* AudioToolbox.framework */; };
+		EBE312341E916C220000FD35 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBE312331E916C220000FD35 /* AudioUnit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EB4094EB1E900AF0009E6B80 /* LoopbackSide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopbackSide.h; sourceTree = "<group>"; };
+		EB4094EC1E900AF0009E6B80 /* LoopbackSide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopbackSide.m; sourceTree = "<group>"; };
 		EBB32EE019D30E1D00A7FD64 /* gTunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gTunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBB32EE419D30E1D00A7FD64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EBB32EE519D30E1D00A7FD64 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -39,6 +44,8 @@
 		EBB32F0319D30FFF00A7FD64 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		EBB32F0419D30FFF00A7FD64 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
 		EBB32F0619D3161A00A7FD64 /* iTunes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
+		EBE312311E9168930000FD35 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		EBE312331E916C220000FD35 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +53,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBE312341E916C220000FD35 /* AudioUnit.framework in Frameworks */,
+				EBE312321E9168930000FD35 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +74,7 @@
 				EBB32EE219D30E1D00A7FD64 /* gTunes */,
 				EBB32EF619D30E1D00A7FD64 /* gTunesTests */,
 				EBB32EE119D30E1D00A7FD64 /* Products */,
+				EBE312301E9168930000FD35 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -85,6 +95,8 @@
 				EBB32EE819D30E1D00A7FD64 /* AppDelegate.m */,
 				EBB32F0319D30FFF00A7FD64 /* AppController.h */,
 				EBB32F0419D30FFF00A7FD64 /* AppController.m */,
+				EB4094EB1E900AF0009E6B80 /* LoopbackSide.h */,
+				EB4094EC1E900AF0009E6B80 /* LoopbackSide.m */,
 				EBB32EEC19D30E1D00A7FD64 /* MainMenu.xib */,
 				EBB32EEA19D30E1D00A7FD64 /* Images.xcassets */,
 				EBB32EE319D30E1D00A7FD64 /* Supporting Files */,
@@ -116,6 +128,15 @@
 				EBB32EF819D30E1D00A7FD64 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EBE312301E9168930000FD35 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EBE312331E916C220000FD35 /* AudioUnit.framework */,
+				EBE312311E9168930000FD35 /* AudioToolbox.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBB32EE919D30E1D00A7FD64 /* AppDelegate.m in Sources */,
+				EB4094ED1E900AF0009E6B80 /* LoopbackSide.m in Sources */,
 				EBB32F0519D30FFF00A7FD64 /* AppController.m in Sources */,
 				EBB32EE619D30E1D00A7FD64 /* main.m in Sources */,
 			);

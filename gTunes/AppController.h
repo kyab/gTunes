@@ -9,11 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
 #import "iTunes.h"
+#import "LoopbackSide.h"
 
 @interface AppController : NSObject
 {
 
     iTunesApplication *iTunesApp;
+    LoopbackSide *loopback;
     __weak IBOutlet NSTextField *lblArtist;
     __weak IBOutlet NSTextField *lblTitle;
     __weak IBOutlet NSButton *btnPlayPause;

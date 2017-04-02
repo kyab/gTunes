@@ -7,6 +7,7 @@
 //
 
 #import "AppController.h"
+#import "LoopbackSide.h"
 
 @implementation AppController
 
@@ -29,6 +30,30 @@
 	//allow timer event to be fired even on moving position slider
 	//http://objective-audio.jp/2008/04/post-6.html
 	[[NSRunLoop currentRunLoop] addTimer:timer forMode:NSEventTrackingRunLoopMode];
+    
+    ////http://d.hatena.ne.jp/zariganitosh/20120918/notification_driven_applescript
+    //look any distribution
+//    NSDistributedNotificationCenter *nc = [NSDistributedNotificationCenter defaultCenter];
+//    [nc addObserver:self selector:@selector(onAnyNotification:) name:nil object:nil];
+    
+    
+    loopback = [[LoopbackSide alloc] init];
+    [loopback initialize];
+    [loopback startInput];
+}
+
+-(void)onAnyNotification:(NSNotification *)notification
+{
+    //ignore some messy notification
+    if (NSOrderedSame == [notification.name compare:@"com.apple.Carbon.TISNotifySelectedKeyboardInputSourceChanged"]){
+        return;
+    }
+    if (NSOrderedSame ==[notification.name compare:@"AppleSelectedInputSourcesChangedNotification"]){
+        return;
+    }
+    
+    NSLog(@"[%@] -- %@",notification.name, notification.object);
+//    NSLog(@"%@",notification.userInfo);
 }
 
 -(IBAction)loadiTunes:(id)sender
@@ -49,7 +74,14 @@
            selector:@selector(iTunesUpdated:)
                name:@"com.apple.iTunes.playerInfo"
              object:nil];
+    
+    //tracking song name etc. changes.
+    [nc addObserver:self
+           selector:@selector(iTunesUpdated:)
+               name:@"com.apple.iTunes.sourceSaved"
+             object:nil];
 
+    //http://d.hatena.ne.jp/zariganitosh/20120918/notification_driven_applescript
 }
 
 -(void)updateStatus
@@ -71,7 +103,7 @@
 		[lblTitle setStringValue:[currentTrack name]];
 	}
     
-    NSLog(@"properties = %@", [currentTrack properties]);
+//    NSLog(@"properties = %@", [currentTrack properties]);
 
     
     //somehow we should call "get"
