@@ -30,6 +30,10 @@
 	double loopStartTime;
 	double loopEndTime;
 	IBOutlet NSWindow *window;
+    __weak IBOutlet NSTextField *lblPlaybackRate;
+    __weak IBOutlet NSSlider *sliderPlaybackRate;
+    Boolean switched;
+    __weak IBOutlet NSTextField *lblSelfMode;
 }
 
 - (IBAction)loadiTunes:(id)sender;
@@ -50,6 +54,5 @@
 
 
 - (IBAction)goToLoopStart:(id)sender;
-- (IBAction)goToLoopEnd:(id)sender;
 
 @end
