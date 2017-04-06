@@ -1040,6 +1040,9 @@ IA
                     </textField>
                 </subviews>
             </view>
+            <connections>
+                <outlet property="delegate" destination="LRo-JF-awA" id="Hdw-gL-igX"/>
+            </connections>
             <point key="canvasLocation" x="100.5" y="380.5"/>
         </window>
         <customObject id="LRo-JF-awA" customClass="AppController">

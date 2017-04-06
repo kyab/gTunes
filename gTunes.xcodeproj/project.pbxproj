@@ -188,7 +188,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0820;
-				ORGANIZATIONNAME = koji;
+				ORGANIZATIONNAME = kyab;
 				TargetAttributes = {
 					EBB32EDF19D30E1D00A7FD64 = {
 						CreatedOnToolsVersion = 6.0.1;
