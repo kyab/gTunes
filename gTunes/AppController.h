@@ -9,12 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
 #import "iTunes.h"
+#import "Spotify.h"
 #import "LoopbackSide.h"
 
 @interface AppController : NSObject
 {
 
     iTunesApplication *iTunesApp;
+    SpotifyApplication *spotifyApp;
     LoopbackSide *loopback;
     __weak IBOutlet NSTextField *lblArtist;
     __weak IBOutlet NSTextField *lblTitle;
@@ -34,6 +36,11 @@
     __weak IBOutlet NSSlider *sliderPlaybackRate;
     Boolean switched;
     __weak IBOutlet NSTextField *lblSelfMode;
+    __weak IBOutlet NSButton *chkBypass;
+    
+    Boolean seekedBySelf;
+    
+    double prevPlaybackPosition;
 }
 
 - (IBAction)loadiTunes:(id)sender;

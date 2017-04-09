@@ -1038,6 +1038,17 @@ IA
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <button misplaced="YES" id="JE3-oK-83O">
+                        <rect key="frame" x="257" y="12" width="65" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="bypass" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Sor-cb-BlQ">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="onBypassChanged:" target="LRo-JF-awA" id="Uzb-Ol-SOb"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <connections>
@@ -1049,6 +1060,7 @@ IA
             <connections>
                 <outlet property="btnGotoStart" destination="aYH-Yw-9eZ" id="WBq-Wn-pRy"/>
                 <outlet property="btnPlayPause" destination="xsn-89-EZM" id="Lbf-k3-Qwa"/>
+                <outlet property="chkBypass" destination="JE3-oK-83O" id="h8o-3z-3dH"/>
                 <outlet property="chkLoop" destination="ip3-MC-rSP" id="nlY-1o-6F7"/>
                 <outlet property="imageArtwork" destination="X2E-cV-hJY" id="mrc-p2-nWj"/>
                 <outlet property="lblArtist" destination="lO3-ku-Oyx" id="CdH-6T-BJ5"/>

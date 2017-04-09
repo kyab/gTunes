@@ -17,6 +17,10 @@
     self = [super init];
     _recording = NO;
     _playing = NO;
+    
+    _lockForRec = [[NSRecursiveLock alloc] init];
+    _lockForPlay = [[NSRecursiveLock alloc] init];
+    
     return self;
 }
 
@@ -72,7 +76,7 @@ OSStatus MyRenderIn(void *inRefCon,
         return noErr;
     }
     
-    RecordFragment *fragment = &(_fragments[0]);
+    RecordFragment *fragment = _cfPlay;
     if (fragment->playedFrameLen + inNumberFrames <= fragment->storedFrameLen){
         memcpy(ioData->mBuffers[0].mData,
                &(fragment->leftBuf[fragment->playedFrameLen]),
@@ -84,6 +88,7 @@ OSStatus MyRenderIn(void *inRefCon,
     }else{
         //fragment->playedFrameLen = 0;
         NSLog(@"overflow");
+        _overflowPlaying = YES;
         //zero output
         UInt32 sampleNum = inNumberFrames;
         float *pLeft = (float *)ioData->mBuffers[0].mData;
@@ -93,7 +98,6 @@ OSStatus MyRenderIn(void *inRefCon,
         fragment->playedFrameLen += inNumberFrames;
         return noErr;
     }
-    NSLog(@"ou");
     return noErr;
     
 }
@@ -101,11 +105,13 @@ OSStatus MyRenderIn(void *inRefCon,
 
 - (OSStatus) renderInput:(AudioUnitRenderActionFlags *)ioActionFlags inTimeStamp:(const AudioTimeStamp *) inTimeStamp inBusNumber:(UInt32) inBusNumber inNumberFrames:(UInt32)inNumberFrames ioData:(AudioBufferList *)ioData{
     
+    [_lockForRec lock];
     if (!_recording){
+        [_lockForRec unlock];
         return noErr;
     }
     
-    RecordFragment *fragment = &(_fragments[0]);
+    RecordFragment *fragment = _cfRec;
     
     AudioBufferList *bufferList = (AudioBufferList *)malloc(sizeof(AudioBufferList) +  sizeof(AudioBuffer)); // for 2 buffers for left and right
     bufferList->mNumberBuffers = 2;
@@ -126,12 +132,12 @@ OSStatus MyRenderIn(void *inRefCon,
     if (FAILED(ret)){
         NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:ret userInfo:nil];
         NSLog(@"Failed AudioUnitRender err=%d(%@)", ret, [err description]);
-        
+        [_lockForRec unlock];
         return ret;
     }
     fragment->storedFrameLen += inNumberFrames;
-    NSLog(@"i");
     
+    [_lockForRec unlock];
     return noErr;
     
 }
@@ -139,11 +145,16 @@ OSStatus MyRenderIn(void *inRefCon,
 
 - (Boolean)initialize{
     
-    _numFragments = 2;
+    _numFragments = 20;
     UInt32 size = _numFragments * sizeof(RecordFragment);
     
     _fragments = (RecordFragment *)malloc(_numFragments * sizeof(RecordFragment));
     NSLog(@"allocated : %.2f [MB]", ((float)size)/1024.0/1024.0);
+    
+    for (int i = 0 ; i < _numFragments; i++){
+        _fragments[i].no = i;
+        _fragments[i].bUsed = false;
+    }
     
     if (![self initializeInput]) return NO;
     if (![self initializeOutput]) return NO;
@@ -384,8 +395,8 @@ OSStatus MyRenderIn(void *inRefCon,
     }
     
     cd.componentType = kAudioUnitType_FormatConverter;
-    //cd.componentSubType = kAudioUnitSubType_TimePitch;
-    cd.componentSubType = kAudioUnitSubType_NewTimePitch;
+    cd.componentSubType = kAudioUnitSubType_TimePitch;
+    //cd.componentSubType = kAudioUnitSubType_NewTimePitch; //low quality slightly lower volume , low cpu usage.
     cd.componentManufacturer = kAudioUnitManufacturer_Apple;
     cd.componentFlags = 0;
     cd.componentFlagsMask = 0;
@@ -536,64 +547,6 @@ OSStatus MyRenderIn(void *inRefCon,
     }
 }
 
-
-- (Boolean)startNewRecord:(float)startSec{
-    _fragments[0].startSecInSong = startSec;
-    _fragments[0].storedFrameLen = 0;
-    
-    _recording = YES;
-    return YES;
-}
-
-- (Boolean)stopRecord:(float)endSec{
-    if (_recording){
-        _fragments[0].endSecInSong = endSec;
-        _recording = NO;
-        NSLog(@"record stopped. from %f to %f. %f secs",
-                        _fragments[0].startSecInSong,
-                        _fragments[0].endSecInSong,
-              _fragments[0].storedFrameLen/44100.0);
-    }
-    return YES;
-}
-
-- (Boolean)startPlayFrom:(float)sec{
-
-    if (sec < _fragments[0].startSecInSong){
-        NSLog(@"not stored <");
-        _playing = NO;
-        return NO;
-    }
-    if (_fragments[0].endSecInSong < sec){
-        NSLog(@"not stored >");
-        _playing = NO;
-        return NO;
-    }
-    
-    float offset = sec - _fragments[0].startSecInSong;
-    _fragments[0].playedFrameLen = (UInt32)(offset*44100);
-
-    if (_fragments[0].playedFrameLen > _fragments[0].storedFrameLen){
-        NSLog(@"something wrong");
-        _playing = NO;
-        return NO;
-    }
-    
-    _playing = YES;
-    return YES;
-}
-
-- (Boolean)seekToPosition:(float)sec{
-
-    return [self startPlayFrom:sec];
-    
-}
-
-- (Boolean)stopPlay{
-    _playing = NO;
-    return YES;
-}
-
 - (Boolean)setPlaybackRate:(float)rate{
     OSStatus ret = AudioUnitSetParameter(_newTimePitchUnit,
                                          kTimePitchParam_Rate,
@@ -609,8 +562,215 @@ OSStatus MyRenderIn(void *inRefCon,
     return YES;
 }
 
+- (Boolean)setBypass:(Boolean)bypass{
+    UInt32 val = (UInt32)bypass;
+    
+
+    OSStatus ret = AudioUnitSetProperty(_newTimePitchUnit,
+                                         kAudioUnitProperty_BypassEffect,
+                                         kAudioUnitScope_Global,
+                                         0,
+                                         &val,
+                                         sizeof(UInt32));
+    if (FAILED(ret)){
+        NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:ret userInfo:nil];
+        NSLog(@"Failed to set Playback rate = %d(%@)", ret, [err description]);
+        return NO;
+    }
+    
+    
+    return YES;
+}
+
+-(NSString *)formatSec:(double)sec
+{
+    NSString *ret = [NSString stringWithFormat:@"%.2d:%.2d:%.2d",
+                     (int)sec/60,
+                     ((int)sec)%60,
+                     (int)((sec-(int)(sec))*100)];
+    return ret;
+}
+
+
+- (Boolean)startNewRecord:(float)startSec{
+
+    [_lockForRec lock];
+    
+    if (_recording){
+        NSLog(@"Still recording");
+        [_lockForRec unlock];
+        return NO;
+    }
+    
+    //find slot
+    bool found = false;
+    for(int i = 0; i < _numFragments ; i++){
+        if (!_fragments[i].bUsed){
+            found = true;
+            _cfRec = &(_fragments[i]);
+            break;
+        }
+    }
+    if (!found){
+        NSLog(@"[loopback]startNewRecord failed. All buffer used...");
+        [_lockForRec unlock];
+        return NO;
+    }
+    _cfRec->bUsed = true;
+    _cfRec->startSecInSong = startSec;
+    _cfRec->endSecInSong = startSec;
+    _cfRec->storedFrameLen = 0;
+    
+    NSLog(@"Started new record from %@",[self formatSec:startSec]);
+    
+    _recording = YES;
+    [_lockForRec unlock];
+    return YES;
+}
+
+- (void)garbageCollect{
+    
+    //remove j-th fragments if i-th fragments cover.
+    
+    for (int i = 0 ; i < _numFragments ; i++){
+        if (!_fragments[i].bUsed){
+            continue;
+        }
+        
+        float start = _fragments[i].startSecInSong;
+        float end = _fragments[i].endSecInSong;
+        for(int j = 0; j < _numFragments; j++){
+            if (i ==j) {
+                continue;
+            }
+            if (!_fragments[j].bUsed){
+                continue;
+            }
+            if ((start <= _fragments[j].startSecInSong) &&
+                (end >= _fragments[j].endSecInSong)){
+                _fragments[j].bUsed = false;
+            }
+            
+        }
+    }
+    [self dumpFragments];
+}
+
+- (void)dumpFragments{
+    for (int i = 0 ; i < _numFragments; i++){
+        if(_fragments[i].bUsed){
+            NSLog(@"fragment[%02d] %@ - %@ (%.2f[%.2f])",i,
+                  [self formatSec:_fragments[i].startSecInSong],
+                  [self formatSec:_fragments[i].endSecInSong],
+                  _fragments[i].endSecInSong - _fragments[i].startSecInSong,
+                  _fragments[i].storedFrameLen / 44100.0f);
+        }else{
+            NSLog(@"fragment[%02d] unused",i);
+        }
+    }
+}
+
+- (Boolean)stopRecord{
+    [_lockForRec lock];
+    if (_recording){
+        if (_cfRec->storedFrameLen <= 44100){
+            NSLog(@"trash too short record");
+            _cfRec->bUsed = false;
+        }else{
+            _cfRec->endSecInSong = _cfRec->startSecInSong + _cfRec->storedFrameLen/44100.0f;
+            [self garbageCollect];
+            NSLog(@"record stopped. as %@ to %@  %f[%f] secs",
+                  [self formatSec:_cfRec->startSecInSong],
+                  [self formatSec:_cfRec->endSecInSong],
+                  _cfRec->endSecInSong - _cfRec->startSecInSong,
+                  _cfRec->storedFrameLen/44100.0
+                  );
+        }
+    }
+    _recording = NO;
+
+    [_lockForRec unlock];
+    return YES;
+}
+
+- (Boolean)canStartPlayFrom:(float)sec{
+    int index = [self findLongestFragmentsStartFrom:sec];
+    if (-1 == index){
+        return NO;
+    }else{
+        return YES;
+    }
+}
+
+- (int)findLongestFragmentsStartFrom:(float)sec{
+    int ret = -1;
+    float length = 0.0f;
+    for (int i = 0 ; i < _numFragments; i++){
+        if (!_fragments[i].bUsed){
+            continue;
+        }
+        if ( (_fragments[i].startSecInSong <= sec) &&
+            (_fragments[i].endSecInSong >=sec)){
+            float l = _fragments[i].endSecInSong - sec;
+            if (length < l){
+                ret = i;
+                length = l;
+            }
+        }
+    }
+    return ret;
+}
+
+- (Boolean)startPlayFrom:(float)sec{
+
+    int index = [self findLongestFragmentsStartFrom:sec];
+    if (-1 == index){
+        NSLog(@"[loopback]startPlayFrom failed. no available record");
+        _playing = NO;
+        return NO;
+    }
+    
+    float offset = sec - _fragments[index].startSecInSong;
+    _fragments[index].playedFrameLen = (UInt32)(offset*44100);
+
+    if (_fragments[index].playedFrameLen > _fragments[index].storedFrameLen){
+        NSAssert(false, @"something wrong");
+    }
+
+    _cfPlay = &(_fragments[index]);
+    
+    _overflowPlaying = NO;
+    _playing = YES;
+    return YES;
+}
+
+- (Boolean)seekToPosition:(float)sec{
+
+    //TODO use currentFragments for Playing as possible.
+    return [self startPlayFrom:sec];
+    
+}
+
+- (Boolean)stopPlay{
+    _playing = NO;
+    return YES;
+}
+
+
 - (float)currentPlayPosition{
-    return _fragments[0].startSecInSong + (_fragments[0].playedFrameLen/44100.0);
+    if (_cfPlay){
+        return _cfPlay->startSecInSong + ((_cfPlay->playedFrameLen)/44100.0);
+    }else{
+        return 0.0f;
+    }
+}
+
+- (Boolean)isPlaying{
+    return _playing;
+}
+
+- (Boolean)isOverflowPlaying{
+    return _overflowPlaying;
 }
 
 @end
