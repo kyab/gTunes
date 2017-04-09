@@ -265,8 +265,10 @@
             seekedBySelf = YES;
             [iTunesApp setMute:NO];
             [loopback startNewRecord:iTunesApp.playerPosition];
+        }else{
+            seekedBySelf = NO;
         }
-    
+        
     }else{
         [loopback stopRecord];
         [iTunesApp setPlayerPosition:totalsec*posRatio];
@@ -309,55 +311,90 @@
 						(int)((sec-(int)(sec))*1000)];
 	return ret;
 }
+
 - (IBAction)fastForward:(id)sender {
     
-    float currentPosition = 0;
     if(switched){
-        currentPosition = [loopback currentPlayPosition] + 3.0;
-        [loopback seekToPosition:currentPosition];
-    }else{
-        [self onStopRecord:self];
+        double cursec = [loopback currentPlayPosition];
+        if (![loopback seekToPosition:cursec + 3.0]){
+            //back to iTunes
+            switched = NO;
+            [lblSelfMode setStringValue:@"iTunes"];
+            [sliderPlaybackRate setDoubleValue:1.0];
+            [sliderPlaybackRate setEnabled:NO];
+            [lblPlaybackRate setStringValue:@"x1.00"];
+            [iTunesApp setPlayerPosition:cursec + 3.0];
+            seekedBySelf = YES;
+            [iTunesApp setMute:NO];
+            [loopback startNewRecord:iTunesApp.playerPosition];
+            
+            double totalsec = iTunesApp.currentTrack.duration;
+            cursec = iTunesApp.playerPosition;
+            [sliderPosition setDoubleValue:cursec/totalsec];
+            seekedBySelf = YES;
+        }else{
+            double totalsec = iTunesApp.currentTrack.duration;
+            cursec = [loopback currentPlayPosition];
+            [sliderPosition setDoubleValue:cursec/totalsec];
+            seekedBySelf = YES;
+        }
         
-        currentPosition = iTunesApp.playerPosition + 3.0;
-        [iTunesApp setPlayerPosition:currentPosition];
+    }else{
+        [loopback stopRecord];
+        [iTunesApp setPlayerPosition:iTunesApp.playerPosition+3.0];
+        seekedBySelf = YES;
+        if (iTunesApp.playerState == iTunesEPlSPlaying){
+            [loopback startNewRecord:[iTunesApp playerPosition]];
+        }
+        double cursec = iTunesApp.playerPosition;
+        double totalsec = iTunesApp.currentTrack.duration;
+        [sliderPosition setDoubleValue:cursec/totalsec];
     }
-    
-    iTunesTrack *currentTrack = [iTunesApp currentTrack];
-    double totalsec = [currentTrack duration];
-    
-    [sliderPosition setDoubleValue:currentPosition/totalsec];
-    seekedBySelf = YES;
     
     NSLog(@"position changed(fast forward)");
     
 }
 
 - (IBAction)rewind:(id)sender {
-    float currentPosition = 0;
-    if (switched){
-        currentPosition = [loopback currentPlayPosition] - 3.0;
-        if (currentPosition < 0.0){
-            currentPosition = 0.0;
+    if(switched){
+        double cursec = [loopback currentPlayPosition];
+        if (![loopback seekToPosition:cursec - 3.0]){
+            //back to iTunes
+            switched = NO;
+            [lblSelfMode setStringValue:@"iTunes"];
+            [sliderPlaybackRate setDoubleValue:1.0];
+            [sliderPlaybackRate setEnabled:NO];
+            [lblPlaybackRate setStringValue:@"x1.00"];
+            [iTunesApp setPlayerPosition:cursec - 3.0];
+            seekedBySelf = YES;
+            [iTunesApp setMute:NO];
+            [loopback startNewRecord:iTunesApp.playerPosition];
+            
+            double totalsec = iTunesApp.currentTrack.duration;
+            cursec = iTunesApp.playerPosition;
+            [sliderPosition setDoubleValue:cursec/totalsec];
+            seekedBySelf = YES;
+        }else{
+            double totalsec = iTunesApp.currentTrack.duration;
+            cursec = [loopback currentPlayPosition];
+            [sliderPosition setDoubleValue:cursec/totalsec];
+            seekedBySelf = YES;
         }
-        [loopback seekToPosition:currentPosition];
+        
     }else{
-        [self onStopRecord:self];
-        currentPosition = iTunesApp.playerPosition - 3.0;
-        if (currentPosition < 0.0){
-            currentPosition = 0.0;
+        [loopback stopRecord];
+        [iTunesApp setPlayerPosition:iTunesApp.playerPosition-3.0];
+        seekedBySelf = YES;
+        if (iTunesApp.playerState == iTunesEPlSPlaying){
+            [loopback startNewRecord:[iTunesApp playerPosition]];
         }
-        [iTunesApp setPlayerPosition:currentPosition];
+        double cursec = iTunesApp.playerPosition;
+        double totalsec = iTunesApp.currentTrack.duration;
+        [sliderPosition setDoubleValue:cursec/totalsec];
     }
-
-    iTunesTrack *currentTrack = [iTunesApp currentTrack];
-    double totalsec = [currentTrack duration];
-    
-    [sliderPosition setDoubleValue:currentPosition/totalsec];
-    seekedBySelf = YES;
-    
-    
     
     NSLog(@"position changed(rewind)");
+    
     
 }
 
