@@ -46,15 +46,21 @@ typedef struct RecordFragment{
 - (Boolean)stopRecord;//:(float)endSec;
 - (Boolean)canStartPlayFrom:(float)sec;
 - (Boolean)startPlayFrom:(float)sec;
+- (Boolean)startPlay;
+- (Boolean)seekTo:(float)sec;
 - (Boolean)stopPlay;
-- (Boolean)seekToPosition:(float)sec;
 - (Boolean)setPlaybackRate:(float)rate;
 - (Boolean)setBypass:(Boolean)bypass;
+
+//TODO make below as overFlowState : No/Yes/Yesbutwaitforwhile (search expected fragment in nearly future(auto switch also required..)
 - (Boolean)isOverflowPlaying;
 - (Boolean)isPlaying;
+
 - (Boolean)initialize;
 - (Boolean)startInput;
 - (Boolean)startOutput;
 - (float)currentPlayPosition;
+
+- (void)dumpFragments;
 
 @end

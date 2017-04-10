@@ -158,6 +158,7 @@ OSStatus MyRenderIn(void *inRefCon,
     
     if (![self initializeInput]) return NO;
     if (![self initializeOutput]) return NO;
+    if (![self setSystemDefaultOutputToBGM]) return NO;
     return true;
 }
 
@@ -547,6 +548,35 @@ OSStatus MyRenderIn(void *inRefCon,
     }
 }
 
+- (Boolean)setSystemDefaultOutputToBGM{
+    AudioDeviceID bgmDevID = [self getBGMDevice];
+    if (-1 == bgmDevID){
+        NSLog(@"NO BGM Device found");
+        return NO;
+    }
+    
+    AudioObjectPropertyAddress propAddress;
+    propAddress.mSelector = kAudioHardwarePropertyDefaultOutputDevice;
+    propAddress.mScope = kAudioObjectPropertyScopeGlobal;
+    propAddress.mElement = kAudioObjectPropertyElementMaster;
+    
+    OSStatus ret = AudioObjectSetPropertyData(kAudioObjectSystemObject,
+                                              &propAddress,
+                                              0,
+                                              NULL,
+                                              sizeof(AudioObjectID),
+                                              &bgmDevID);
+    if(FAILED(ret)){
+        NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:ret userInfo:nil];
+        NSLog(@"Failed to set Default output for BGM = %d(%@)", ret, [err description]);
+        return NO;
+    }
+
+    return YES;
+    
+}
+
+
 - (Boolean)setPlaybackRate:(float)rate{
     OSStatus ret = AudioUnitSetParameter(_newTimePitchUnit,
                                          kTimePitchParam_Rate,
@@ -723,6 +753,15 @@ OSStatus MyRenderIn(void *inRefCon,
 
 - (Boolean)startPlayFrom:(float)sec{
 
+    if (![self seekTo:sec]){
+        return NO;
+    }
+    _playing = YES;
+    return YES;
+
+}
+
+- (Boolean)seekTo:(float)sec{
     int index = [self findLongestFragmentsStartFrom:sec];
     if (-1 == index){
         NSLog(@"[loopback]startPlayFrom failed. no available record");
@@ -732,23 +771,20 @@ OSStatus MyRenderIn(void *inRefCon,
     
     float offset = sec - _fragments[index].startSecInSong;
     _fragments[index].playedFrameLen = (UInt32)(offset*44100);
-
+    
     if (_fragments[index].playedFrameLen > _fragments[index].storedFrameLen){
         NSAssert(false, @"something wrong");
     }
-
-    _cfPlay = &(_fragments[index]);
     
+    _cfPlay = &(_fragments[index]);
     _overflowPlaying = NO;
-    _playing = YES;
+    
     return YES;
 }
 
-- (Boolean)seekToPosition:(float)sec{
-
-    //TODO use currentFragments for Playing as possible.
-    return [self startPlayFrom:sec];
-    
+- (Boolean)startPlay{
+    _playing = YES;
+    return YES;
 }
 
 - (Boolean)stopPlay{

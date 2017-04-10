@@ -1049,6 +1049,17 @@ IA
                             <action selector="onBypassChanged:" target="LRo-JF-awA" id="Uzb-Ol-SOb"/>
                         </connections>
                     </button>
+                    <button verticalHuggingPriority="750" misplaced="YES" id="zlh-xP-kd7">
+                        <rect key="frame" x="36" y="72" width="75" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="dump" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ydo-tA-nzz">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="onDumpClicked:" target="LRo-JF-awA" id="abb-YN-jJg"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <connections>
