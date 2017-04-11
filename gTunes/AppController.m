@@ -520,36 +520,6 @@
 }
 
 
-- (IBAction)onStartRecord:(id)sender {
-    double cursec = [iTunesApp playerPosition];	//not updated in msec...
-    [loopback startNewRecord:(float)cursec];
-    
-}
-
-- (IBAction)onStopRecord:(id)sender {
-    [loopback stopRecord];
-}
-
-- (IBAction)onSwitch:(id)sender {
-    if (switched == NO){
-        switched = YES;
-        [lblSelfMode setStringValue:@"self mode"];
-
-        [loopback setPlaybackRate:[sliderPlaybackRate doubleValue]];
-        
-        [iTunesApp pause];
-        [loopback startPlayFrom:[iTunesApp playerPosition]];
-        
-    }else{
-        switched = NO;
-        [lblSelfMode setStringValue:@"iTunes"];
-        [loopback stopPlay];
-        [iTunesApp setPlayerPosition:[loopback currentPlayPosition]];
-
-        [iTunesApp playpause];
-    }
-}
-
 - (IBAction)sliderPlaybackRateChanged:(id)sender {
 
     double rate = [sliderPlaybackRate doubleValue];
@@ -585,6 +555,13 @@
     }
 
 }
+
+- (IBAction)onCompanion:(id)sender {
+
+
+}
+
+
 - (IBAction)onBypassChanged:(id)sender {
     if ([chkBypass state] == NSOnState){
         [loopback setBypass:YES];
