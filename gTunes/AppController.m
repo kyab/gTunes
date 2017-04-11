@@ -557,7 +557,8 @@
 }
 
 - (IBAction)onCompanion:(id)sender {
-
+    
+    [[NSWorkspace sharedWorkspace] openFile:@"/Users/koji/Music/scores/ヘッド博士.txt"];
 
 }
 
