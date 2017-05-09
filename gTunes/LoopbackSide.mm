@@ -78,12 +78,23 @@ OSStatus MyRenderIn(void *inRefCon,
     
     RecordFragment *fragment = _cfPlay;
     if (fragment->playedFrameLen + inNumberFrames <= fragment->storedFrameLen){
-        memcpy(ioData->mBuffers[0].mData,
+        
+        if(!_flipped){
+            memcpy(ioData->mBuffers[0].mData,
                &(fragment->leftBuf[fragment->playedFrameLen]),
                sizeof(float)*inNumberFrames);
-        memcpy(ioData->mBuffers[1].mData,
+            memcpy(ioData->mBuffers[1].mData,
                &(fragment->rightBuf[fragment->playedFrameLen]),
                sizeof(float)*inNumberFrames);
+        }else{
+            //flip
+            memcpy(ioData->mBuffers[0].mData,
+                   &(fragment->rightBuf[fragment->playedFrameLen]),
+                   sizeof(float)*inNumberFrames);
+            memcpy(ioData->mBuffers[1].mData,
+                   &(fragment->leftBuf[fragment->playedFrameLen]),
+                   sizeof(float)*inNumberFrames);
+        }
         fragment->playedFrameLen += inNumberFrames;
     }else{
         //fragment->playedFrameLen = 0;
@@ -807,6 +818,10 @@ OSStatus MyRenderIn(void *inRefCon,
 
 - (Boolean)isOverflowPlaying{
     return _overflowPlaying;
+}
+
+- (void)setFlipped:(Boolean)flip{
+    _flipped = flip;
 }
 
 @end

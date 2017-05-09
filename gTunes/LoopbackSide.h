@@ -38,6 +38,8 @@ typedef struct RecordFragment{
     Boolean _playing;
     Boolean _overflowPlaying;
     
+    Boolean _flipped;
+    
     NSRecursiveLock *_lockForRec;
     NSRecursiveLock *_lockForPlay;
 }
@@ -62,5 +64,7 @@ typedef struct RecordFragment{
 - (float)currentPlayPosition;
 
 - (void)dumpFragments;
+
+- (void)setFlipped:(Boolean) flip;
 
 @end

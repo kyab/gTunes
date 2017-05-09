@@ -33,6 +33,11 @@
     
     [self clearLoopEnd:self];
     
+    compTableDataSource = [[CompTableViewController alloc] init];
+    [compTableDataSource loadFile:@"/Users/koji/Desktop/gTunes.json"];
+    [compTableView setDataSource:(id)compTableDataSource];
+    [compTableView setDelegate:(id)compTableDataSource];
+    
     
 	timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(ontimer:) userInfo:nil repeats:YES];
 	
@@ -142,6 +147,11 @@
 		[lblTitle setStringValue:[currentTrack name]];
 	}
 
+    if (currentTrack.artist && currentTrack.name){
+        [compTableDataSource setCurrentSong:currentTrack.name artist:currentTrack.artist];
+        [compTableView reloadData];
+    }
+    
     
     //somehow we should call "get"
     //http://www.cocoabuilder.com/archive/cocoa/200195-problems-with-scriptingbridge-and-itunes.html
@@ -311,6 +321,7 @@
             [btnPlayPause setTitle:@"Pause"];
         }
     }
+    NSLog(@"First Responder = %@", [window firstResponder]);
 }
 
 
@@ -574,5 +585,167 @@
 - (IBAction)onDumpClicked:(id)sender {
     [loopback dumpFragments];
 }
+
+- (IBAction)onFlipLR:(id)sender {
+    if (menuFlipLR.state == NSOnState ){
+        [loopback setFlipped:NO];
+        [menuFlipLR setState:NSOffState];
+        
+    }else{
+        [loopback setFlipped:YES];
+        [menuFlipLR setState:NSOnState];
+    }
+}
+
+- (void)notifyDD:(NSURL *)fileURL{
+    NSLog(@"AppController notifyDD %@", fileURL.path);
+    [compTableDataSource addItem:fileURL.path];
+    [compTableView reloadData];
+}
+
+- (IBAction)onCompTableDouble:(id)sender {
+    NSInteger row = compTableView.selectedRow;
+    if (row >= 0){
+        NSString *filePath = [compTableDataSource itemAtRow:compTableView.selectedRow];
+        [[NSWorkspace sharedWorkspace] openFile:filePath];
+    }
+    
+}
+
+- (IBAction)revealInFinder:(id)sender {
+    NSInteger row = compTableView.selectedRow;
+    if (row >= 0){
+        NSString *path = [compTableDataSource itemAtRow:row];
+        NSURL *url = [NSURL fileURLWithPath:path];
+        NSArray *urls = [NSArray arrayWithObjects:url, nil];
+        [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:urls];
+    }
+}
+- (IBAction)onTableViewAction:(id)sender {
+    showResponderChain(compTableView);
+    showResponderChain(btnPlayPause);
+    NSLog(@"TableView Action　%ld", compTableView.selectedRow);
+
+}
+
+- (BOOL)validateMenuItem:(NSMenuItem *)item {
+    NSInteger row = compTableView.selectedRow;
+    if ([item action] == @selector(revealInFinder:)){
+        if (row != -1){
+            return YES;
+        }else{
+            return NO;
+        }
+    }
+    return YES;
+}
+
+void showResponderChain(NSResponder* responder)
+{
+    NSLog(@"- Show responder chain?   ");
+    
+    while(true) {
+        NSLog(@"%@", NSStringFromClass([responder class]));
+        responder = [responder nextResponder];
+        
+        if(responder == nil) {
+            break;
+        }
+        printf("-> ");
+    }
+}
+- (IBAction)testJSON:(id)sender {
+    NSMutableDictionary *top = [[NSMutableDictionary alloc] init];
+    [top setObject:@"1.0" forKey:@"version"];
+    
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    NSMutableDictionary *item = [[NSMutableDictionary alloc] init];
+    //[item setObject:@"00001" forKey:@"id"];
+    [item setObject:[NSUUID UUID].UUIDString forKey:@"id"];
+    [item setObject:@"someone" forKey:@"artist"];
+    [item setObject:@"somesong" forKey:@"title"];
+    NSMutableArray *files = [[NSMutableArray alloc] init];
+    [files addObject:@"/Users/path/1"];
+    [files addObject:@"/some/whre"];
+    [item setObject:files forKey:@"companion"];
+    
+    [array addObject:item];
+    
+    NSMutableDictionary *item2 = [[NSMutableDictionary alloc] init];
+    [item2 setObject:@"00002" forKey:@"id"];
+    [item2 setObject:[NSUUID UUID].UUIDString forKey:@"id"];
+    [item2 setObject:@"someon2" forKey:@"artist"];
+    [item2 setObject:@"some/B-side" forKey:@"title"];
+    NSMutableArray *files2 = [[NSMutableArray alloc] init];
+    [files2 addObject:@"/Users/path/2"];
+    [item2 setObject:files2 forKey:@"companion"];
+    
+    [array addObject:item2];
+    
+    NSMutableDictionary *item3 = [[NSMutableDictionary alloc] init];
+    [item3 setObject:@"00003" forKey:@"id"];
+    [item3 setObject:[NSUUID UUID].UUIDString forKey:@"id"];
+    [item3 setObject:@"小沢健二" forKey:@"artist"];
+    [item3 setObject:@"ある光" forKey:@"title"];
+    NSMutableArray *files3 = [[NSMutableArray alloc] init];
+    [item3 setObject:files3 forKey:@"companion"];
+    
+    [array addObject:item3];
+    
+    [top setObject:array forKey:@"database"];
+    
+    //avoid sirry escape for "/" in path
+    //http://stackoverflow.com/questions/19651009/how-to-prevent-nsjsonserialization-from-adding-extra-escapes-in-url
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:top options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *str = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    str = [str stringByReplacingOccurrencesOfString:@"\\/" withString:@"/"];
+    
+    
+//    NSOutputStream *outfile = [NSOutputStream outputStreamToFileAtPath:@"/Users/koji/Desktop/test.json" append:NO];
+//    [outfile open];
+//    [outfile ]
+//    NSInteger ret =[NSJSONSerialization writeJSONObject:top
+//                                toStream:outfile
+//                                 options:NSJSONWritingPrettyPrinted
+//                                   error:nil];
+//    if(!ret){
+//        NSLog(@"JSON write error");
+//    }
+//    [outfile close];
+    
+    NSString *path = @"/Users/koji/Desktop/test.json";
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    BOOL exist = [fileManager fileExistsAtPath:@"/Users/koji/Desktop/test.json"];
+    if (!exist){
+        [fileManager createFileAtPath:path contents:nil attributes:nil];
+    }else{
+        [fileManager removeItemAtPath:path error:nil];
+        [fileManager createFileAtPath:path contents:nil attributes:nil];
+    }
+    NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:path];
+    NSData *writeData = [str dataUsingEncoding:NSUTF8StringEncoding];
+    [fileHandle writeData:writeData];
+    [fileHandle closeFile];
+    
+    
+    //read side.
+    NSInputStream *inFile = [NSInputStream inputStreamWithFileAtPath:path];
+    [inFile open];
+    NSMutableDictionary *outDict = [NSJSONSerialization JSONObjectWithStream:inFile
+                                                                     options:NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves
+                                                                       error:nil];
+    NSLog(@"result:%@",outDict);
+    
+}
+
+
+- (IBAction)onSpotlight:(id)sender {
+    NSString *title = [[iTunesApp currentTrack] name];
+    if (title){
+        [NSWorkspace.sharedWorkspace showSearchResultsForQueryString:title];
+    }
+}
+
 
 @end

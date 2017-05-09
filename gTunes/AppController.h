@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
+
 #import "iTunes.h"
 #import "Spotify.h"
 #import "LoopbackSide.h"
+#import "CompTableViewController.h"
 
 @interface AppController : NSObject
 {
@@ -37,8 +39,13 @@
     Boolean switched;
     __weak IBOutlet NSTextField *lblSelfMode;
     __weak IBOutlet NSButton *chkBypass;
+    __weak IBOutlet NSMenuItem *menuFlipLR;
     
+    __weak IBOutlet NSMenuItem *menuRevealInFinder;
+    __weak IBOutlet NSTableView *compTableView;
+    CompTableViewController *compTableDataSource;
     Boolean seekedBySelf;
+    
     
     double prevPlaybackPosition;
 }
@@ -61,5 +68,7 @@
 
 
 - (IBAction)goToLoopStart:(id)sender;
+
+- (void)notifyDD:(NSURL *)fileURL;
 
 @end

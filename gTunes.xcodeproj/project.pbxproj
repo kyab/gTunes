@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB2917D61EA0D2190055978B /* CompTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB2917D51EA0D2190055978B /* CompTableViewController.m */; };
+		EB2917D91EA0D89B0055978B /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB2917D81EA0D89B0055978B /* MainView.m */; };
 		EB4094ED1E900AF0009E6B80 /* LoopbackSide.mm in Sources */ = {isa = PBXBuildFile; fileRef = EB4094EC1E900AF0009E6B80 /* LoopbackSide.mm */; };
 		EBB32EE619D30E1D00A7FD64 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB32EE519D30E1D00A7FD64 /* main.m */; };
 		EBB32EE919D30E1D00A7FD64 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB32EE819D30E1D00A7FD64 /* AppDelegate.m */; };
@@ -30,6 +32,10 @@
 
 /* Begin PBXFileReference section */
 		EB0CB3EE1E9798F500D84524 /* Spotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spotify.h; sourceTree = "<group>"; };
+		EB2917D41EA0D2190055978B /* CompTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompTableViewController.h; sourceTree = "<group>"; };
+		EB2917D51EA0D2190055978B /* CompTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompTableViewController.m; sourceTree = "<group>"; };
+		EB2917D71EA0D89B0055978B /* MainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainView.h; sourceTree = "<group>"; };
+		EB2917D81EA0D89B0055978B /* MainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainView.m; sourceTree = "<group>"; };
 		EB4094EB1E900AF0009E6B80 /* LoopbackSide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopbackSide.h; sourceTree = "<group>"; };
 		EB4094EC1E900AF0009E6B80 /* LoopbackSide.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = LoopbackSide.mm; sourceTree = "<group>"; };
 		EBA0F0341E92A8E900564D75 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
@@ -102,6 +108,10 @@
 				EB4094EB1E900AF0009E6B80 /* LoopbackSide.h */,
 				EB4094EC1E900AF0009E6B80 /* LoopbackSide.mm */,
 				EBB32EEC19D30E1D00A7FD64 /* MainMenu.xib */,
+				EB2917D41EA0D2190055978B /* CompTableViewController.h */,
+				EB2917D51EA0D2190055978B /* CompTableViewController.m */,
+				EB2917D71EA0D89B0055978B /* MainView.h */,
+				EB2917D81EA0D89B0055978B /* MainView.m */,
 				EBB32EEA19D30E1D00A7FD64 /* Images.xcassets */,
 				EBB32EE319D30E1D00A7FD64 /* Supporting Files */,
 			);
@@ -245,9 +255,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBB32EE919D30E1D00A7FD64 /* AppDelegate.m in Sources */,
+				EB2917D61EA0D2190055978B /* CompTableViewController.m in Sources */,
 				EB4094ED1E900AF0009E6B80 /* LoopbackSide.mm in Sources */,
 				EBB32F0519D30FFF00A7FD64 /* AppController.m in Sources */,
 				EBB32EE619D30E1D00A7FD64 /* main.m in Sources */,
+				EB2917D91EA0D89B0055978B /* MainView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
