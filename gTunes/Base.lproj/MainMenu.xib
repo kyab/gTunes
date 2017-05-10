@@ -1050,7 +1050,7 @@ IA
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <clipView key="contentView" focusRingType="none" id="Hl5-q4-HNW">
                             <rect key="frame" x="1" y="0.0" width="393" height="156"/>
-                            <autoresizingMask key="autoresizingMask"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" autosaveColumns="NO" headerView="rva-6E-3cn" id="hMG-OE-q6t">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="133"/>
@@ -1119,6 +1119,54 @@ IA
                         </buttonCell>
                         <connections>
                             <action selector="onSpotlight:" target="LRo-JF-awA" id="h3G-Yd-n3N"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" misplaced="YES" id="nqW-lm-GhI">
+                        <rect key="frame" x="88" y="19" width="108" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="dummygo2" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OPu-eU-QC0">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent">z</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="Bpressed:" target="LRo-JF-awA" id="G87-FW-iET"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" misplaced="YES" id="HS6-SH-WTi">
+                        <rect key="frame" x="164" y="19" width="108" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="dummygo3" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="P4V-fw-OhQ">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent">x</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="Bpressed:" target="LRo-JF-awA" id="WJ5-5v-w5T"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" misplaced="YES" id="bTd-ua-zA0">
+                        <rect key="frame" x="238" y="19" width="109" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="dummygo4" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ft5-t5-RoT">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent">c</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="Bpressed:" target="LRo-JF-awA" id="rk0-dh-shy"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" misplaced="YES" id="pe0-UB-pU0">
+                        <rect key="frame" x="317" y="17" width="108" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="dummygo5" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="IxU-Zn-X5z">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent">v</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="Bpressed:" target="LRo-JF-awA" id="dOE-NF-YP6"/>
                         </connections>
                     </button>
                 </subviews>
