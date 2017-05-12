@@ -340,14 +340,14 @@
     if(switched){
         Boolean playing = [loopback isPlaying];
         double cursec = [loopback currentPlayPosition];
-        if (![loopback seekTo:cursec + 3.0]){
+        if (![loopback seekTo:cursec + 1.0]){
             //back to iTunes
             switched = NO;
             [lblSelfMode setStringValue:@"iTunes"];
             [sliderPlaybackRate setDoubleValue:1.0];
             [sliderPlaybackRate setEnabled:NO];
             [lblPlaybackRate setStringValue:@"x1.00"];
-            [iTunesApp setPlayerPosition:cursec + 3.0];
+            [iTunesApp setPlayerPosition:cursec + 1.0];
             seekedBySelf = YES;
             if (playing){
                 [iTunesApp playpause];
@@ -366,7 +366,7 @@
         
     }else{
         [loopback stopRecord];
-        [iTunesApp setPlayerPosition:iTunesApp.playerPosition+3.0];
+        [iTunesApp setPlayerPosition:iTunesApp.playerPosition+1.0];
         seekedBySelf = YES;
         if (iTunesApp.playerState == iTunesEPlSPlaying){
             [loopback startNewRecord:[iTunesApp playerPosition]];
@@ -382,14 +382,14 @@
     if(switched){
         Boolean playing = [loopback isPlaying];
         double cursec = [loopback currentPlayPosition];
-        if (![loopback seekTo:cursec - 3.0]){
+        if (![loopback seekTo:cursec - 1.0]){
             //back to iTunes
             switched = NO;
             [lblSelfMode setStringValue:@"iTunes"];
             [sliderPlaybackRate setDoubleValue:1.0];
             [sliderPlaybackRate setEnabled:NO];
             [lblPlaybackRate setStringValue:@"x1.00"];
-            [iTunesApp setPlayerPosition:cursec - 3.0];
+            [iTunesApp setPlayerPosition:cursec - 1.0];
             seekedBySelf = YES;
             [iTunesApp playpause];
             [loopback startNewRecord:iTunesApp.playerPosition];
@@ -410,7 +410,7 @@
         
     }else{
         [loopback stopRecord];
-        [iTunesApp setPlayerPosition:iTunesApp.playerPosition-3.0];
+        [iTunesApp setPlayerPosition:iTunesApp.playerPosition-1.0];
         seekedBySelf = YES;
         if (iTunesApp.playerState == iTunesEPlSPlaying){
             [loopback startNewRecord:[iTunesApp playerPosition]];
