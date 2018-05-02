@@ -31,6 +31,11 @@
     [loopback startInput];
     [loopback startOutput];
     
+    
+    through = [[ThroughSide alloc] init];
+    [through initialize];
+    [through startThrough];
+    
     [self clearLoopEnd:self];
     
     compTableDataSource = [[CompTableViewController alloc] init];

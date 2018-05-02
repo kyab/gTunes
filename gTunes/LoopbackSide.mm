@@ -269,6 +269,65 @@ OSStatus MyRenderIn(void *inRefCon,
     return YES;
     
 }
+
+- (AudioObjectID)getBuiltInDevice{
+    OSStatus ret = noErr;
+    UInt32 propertySize = 0;
+    UInt32 num = 0;
+    AudioDeviceID result = -1;
+    
+    AudioObjectPropertyAddress propAddress;
+    propAddress.mSelector = kAudioHardwarePropertyDevices;
+    propAddress.mScope = kAudioObjectPropertyScopeGlobal;
+    propAddress.mElement = kAudioObjectPropertyElementMaster;
+    
+    ret = AudioObjectGetPropertyDataSize(kAudioObjectSystemObject, &propAddress, 0, NULL, &propertySize);
+    
+    if(FAILED(ret)){
+        NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:ret userInfo:nil];
+        NSLog(@"Failed to set Device for Input = %d(%@)", ret, [err description]);
+        return -1;
+    }
+    num = propertySize / sizeof(AudioObjectID);
+    
+    AudioObjectID *objects = (AudioObjectID *)malloc(propertySize);
+    ret = AudioObjectGetPropertyData(kAudioObjectSystemObject, &propAddress, 0, NULL, &propertySize, objects);
+    if(FAILED(ret)){
+        NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:ret userInfo:nil];
+        NSLog(@"Failed to set Device for Input = %d(%@)", ret, [err description]);
+        free(objects);
+        return -1;
+    }
+    
+    for (int i = 0 ; i < num ; i++){
+        CFStringRef name = NULL;
+        propAddress.mSelector = kAudioObjectPropertyName;
+        UInt32 size = sizeof(CFStringRef);
+        ret = AudioObjectGetPropertyData(objects[i], &propAddress, 0, NULL,
+                                         &size, &name);
+        if(FAILED(ret)){
+            NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:ret userInfo:nil];
+            NSLog(@"Failed to Get Name = %d(%@)", ret, [err description]);
+            free(objects);
+            return -1;
+        }
+        
+        NSLog(@"Device[%02d,0x%02X]:%@", i, (unsigned int)objects[i],name);
+        if (name != NULL){
+            if (CFStringCompare(name, CFSTR("Built-in Output"),kCFCompareCaseInsensitive) == kCFCompareEqualTo){
+                result = objects[i];
+            }
+            CFRelease(name);
+        }
+    }
+    if (-1 == result){
+        NSLog(@"No Built-In Device found on system");
+    }
+    
+    free(objects);
+    return result;
+}
+
 - (AudioDeviceID)getBGMDevice{
     OSStatus ret = noErr;
     UInt32 propertySize = 0;
@@ -311,7 +370,7 @@ OSStatus MyRenderIn(void *inRefCon,
             return -1;
         }
         
-        //NSLog(@"Device[%02d,0x%02X]:%@", i, (unsigned int)objects[i],name);
+        NSLog(@"Device[%02d,0x%02X]:%@", i, (unsigned int)objects[i],name);
         if (name != NULL){
             if (CFStringCompare(name, CFSTR("Background Music Device"),kCFCompareCaseInsensitive) == kCFCompareEqualTo){
                 result = objects[i];
@@ -421,7 +480,7 @@ OSStatus MyRenderIn(void *inRefCon,
     }
     
     cd.componentType = kAudioUnitType_Output;
-    cd.componentSubType = kAudioUnitSubType_DefaultOutput;
+    cd.componentSubType = kAudioUnitSubType_HALOutput;
     cd.componentManufacturer = kAudioUnitManufacturer_Apple;
     cd.componentFlags = 0;
     cd.componentFlagsMask = 0;
@@ -431,6 +490,9 @@ OSStatus MyRenderIn(void *inRefCon,
         NSLog(@"failed to AUGraphAddNode");
         return NO;
     }
+    
+    
+    
     ret = AUGraphNodeInfo(_graph, outNode, NULL, &_outUnit);
     if (FAILED(ret)){
         NSLog(@"failed to AUGraphNodeInfo");
@@ -496,6 +558,10 @@ OSStatus MyRenderIn(void *inRefCon,
         return NO;
     }
     
+    [self setOutputToBuiltIn];
+    
+    
+    
     ret = AUGraphInitialize(_graph);
     if (FAILED(ret)){
         NSLog(@"failed to AUGraphInitialize");
@@ -558,6 +624,31 @@ OSStatus MyRenderIn(void *inRefCon,
         
     }
 }
+- (Boolean)setOutputToBuiltIn{
+    AudioDeviceID builtInDevID = [self getBuiltInDevice];
+    if (-1 == builtInDevID){
+        NSLog(@"failed to get Built-In");
+        return NO;
+    }else{
+        NSLog(@"setOutputToBuiltIn");
+    }
+    //AudioDeviceID inDevID = -1;
+    OSStatus ret = AudioUnitSetProperty(_outUnit,
+                               kAudioOutputUnitProperty_CurrentDevice,
+                               kAudioUnitScope_Global,
+                               0,
+                               &builtInDevID,
+                               sizeof(AudioDeviceID));
+    if(FAILED(ret)){
+        NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:ret userInfo:nil];
+        NSLog(@"Failed to set Device for Output = %d(%@)", ret, [err description]);
+        return NO;
+    }
+    
+    
+    return YES;
+}
+
 
 - (Boolean)setSystemDefaultOutputToBGM{
     AudioDeviceID bgmDevID = [self getBGMDevice];
@@ -586,7 +677,6 @@ OSStatus MyRenderIn(void *inRefCon,
     return YES;
     
 }
-
 
 - (Boolean)setPlaybackRate:(float)rate{
     OSStatus ret = AudioUnitSetParameter(_newTimePitchUnit,

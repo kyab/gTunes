@@ -13,6 +13,7 @@
 #import "Spotify.h"
 #import "LoopbackSide.h"
 #import "CompTableViewController.h"
+#import "ThroughSide.h"
 
 @interface AppController : NSObject
 {
@@ -20,6 +21,7 @@
     iTunesApplication *iTunesApp;
     SpotifyApplication *spotifyApp;
     LoopbackSide *loopback;
+    ThroughSide *through;
     __weak IBOutlet NSTextField *lblArtist;
     __weak IBOutlet NSTextField *lblTitle;
     __weak IBOutlet NSButton *btnPlayPause;

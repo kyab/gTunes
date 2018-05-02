@@ -18,6 +18,8 @@
 		EBB32F0519D30FFF00A7FD64 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB32F0419D30FFF00A7FD64 /* AppController.m */; };
 		EBE312321E9168930000FD35 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBE312311E9168930000FD35 /* AudioToolbox.framework */; };
 		EBE312341E916C220000FD35 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBE312331E916C220000FD35 /* AudioUnit.framework */; };
+		EBEC4C182098AE1B009C25C6 /* ThroughSide.m in Sources */ = {isa = PBXBuildFile; fileRef = EBEC4C172098AE1B009C25C6 /* ThroughSide.m */; };
+		EBEC4C1B2098B02B009C25C6 /* RingBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = EBEC4C1A2098B02B009C25C6 /* RingBuffer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,10 @@
 		EBB32F0619D3161A00A7FD64 /* iTunes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
 		EBE312311E9168930000FD35 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		EBE312331E916C220000FD35 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		EBEC4C162098AE1B009C25C6 /* ThroughSide.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThroughSide.h; sourceTree = "<group>"; };
+		EBEC4C172098AE1B009C25C6 /* ThroughSide.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThroughSide.m; sourceTree = "<group>"; };
+		EBEC4C192098B01B009C25C6 /* RingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RingBuffer.h; sourceTree = "<group>"; };
+		EBEC4C1A2098B02B009C25C6 /* RingBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RingBuffer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +113,10 @@
 				EBB32F0419D30FFF00A7FD64 /* AppController.m */,
 				EB4094EB1E900AF0009E6B80 /* LoopbackSide.h */,
 				EB4094EC1E900AF0009E6B80 /* LoopbackSide.mm */,
+				EBEC4C162098AE1B009C25C6 /* ThroughSide.h */,
+				EBEC4C172098AE1B009C25C6 /* ThroughSide.m */,
+				EBEC4C192098B01B009C25C6 /* RingBuffer.h */,
+				EBEC4C1A2098B02B009C25C6 /* RingBuffer.m */,
 				EBB32EEC19D30E1D00A7FD64 /* MainMenu.xib */,
 				EB2917D41EA0D2190055978B /* CompTableViewController.h */,
 				EB2917D51EA0D2190055978B /* CompTableViewController.m */,
@@ -254,6 +264,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBEC4C182098AE1B009C25C6 /* ThroughSide.m in Sources */,
+				EBEC4C1B2098B02B009C25C6 /* RingBuffer.m in Sources */,
 				EBB32EE919D30E1D00A7FD64 /* AppDelegate.m in Sources */,
 				EB2917D61EA0D2190055978B /* CompTableViewController.m in Sources */,
 				EB4094ED1E900AF0009E6B80 /* LoopbackSide.mm in Sources */,
