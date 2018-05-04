@@ -662,7 +662,22 @@ OSStatus MyRenderIn(void *inRefCon,
     propAddress.mScope = kAudioObjectPropertyScopeGlobal;
     propAddress.mElement = kAudioObjectPropertyElementMaster;
     
-    OSStatus ret = AudioObjectSetPropertyData(kAudioObjectSystemObject,
+    UInt32 size = sizeof(_preOutputDeviceID);
+    OSStatus ret = AudioObjectGetPropertyData(kAudioObjectSystemObject,&propAddress,
+                                              0, NULL, &size, &_preOutputDeviceID);
+    
+    if (0 < ret){
+        NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:ret userInfo:nil];
+        NSLog(@"Failed to get Current output %d(%@)", ret, [err description]);
+        return NO;
+    }
+    
+    
+    propAddress.mSelector = kAudioHardwarePropertyDefaultOutputDevice;
+    propAddress.mScope = kAudioObjectPropertyScopeGlobal;
+    propAddress.mElement = kAudioObjectPropertyElementMaster;
+    
+    ret = AudioObjectSetPropertyData(kAudioObjectSystemObject,
                                               &propAddress,
                                               0,
                                               NULL,
@@ -676,6 +691,32 @@ OSStatus MyRenderIn(void *inRefCon,
 
     return YES;
     
+}
+
+
+
+-(BOOL)restoreSystemOutputDevice{
+    
+    if (!_preOutputDeviceID) return YES;
+    
+    AudioObjectPropertyAddress propAddress;
+    propAddress.mSelector = kAudioHardwarePropertyDefaultOutputDevice;
+    propAddress.mScope = kAudioObjectPropertyScopeGlobal;
+    propAddress.mElement = kAudioObjectPropertyElementMaster;
+    
+    OSStatus ret = AudioObjectSetPropertyData(kAudioObjectSystemObject,
+                                              &propAddress,
+                                              0,
+                                              NULL,
+                                              sizeof(AudioObjectID),
+                                              &_preOutputDeviceID);
+    if(0 < ret){
+        NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:ret userInfo:nil];
+        NSLog(@"Failed to restore Default output for BGM = %d(%@)", ret, [err description]);
+        return NO;
+    }
+    
+    return YES;
 }
 
 - (Boolean)setPlaybackRate:(float)rate{

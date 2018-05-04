@@ -14,12 +14,13 @@
 #import "LoopbackSide.h"
 #import "CompTableViewController.h"
 #import "ThroughSide.h"
+#import "MusicApplication.h"
 
 @interface AppController : NSObject
 {
 
-    iTunesApplication *iTunesApp;
-    SpotifyApplication *spotifyApp;
+    id<MusicApplication> musicApp;
+    
     LoopbackSide *loopback;
     ThroughSide *through;
     __weak IBOutlet NSTextField *lblArtist;

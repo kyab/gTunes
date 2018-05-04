@@ -30,6 +30,8 @@ typedef struct RecordFragment{
     AudioUnit _newTimePitchUnit;
     AudioUnit _inputUnit;
     
+    AudioDeviceID _preOutputDeviceID;
+    
     RecordFragment *_fragments;
     RecordFragment *_cfRec;     //currentFragment (recording)
     RecordFragment *_cfPlay;    //curentFragment  (playing)
@@ -53,6 +55,8 @@ typedef struct RecordFragment{
 - (Boolean)stopPlay;
 - (Boolean)setPlaybackRate:(float)rate;
 - (Boolean)setBypass:(Boolean)bypass;
+
+- (BOOL)restoreSystemOutputDevice;
 
 //TODO make below as overFlowState : No/Yes/Yesbutwaitforwhile (search expected fragment in nearly future(auto switch also required..)
 - (Boolean)isOverflowPlaying;
